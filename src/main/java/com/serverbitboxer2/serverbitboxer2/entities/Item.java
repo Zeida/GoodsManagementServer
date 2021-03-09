@@ -15,6 +15,7 @@ public class Item implements Serializable {
     private Long itemcode;
     private String description;
     private double price;
+    @Enumerated(EnumType.STRING)
     private ItemStateEnum state;
     private Supplier supplier;
     private PriceReduction pricereduction;
