@@ -2,6 +2,7 @@ package com.serverbitboxer2.serverbitboxer2.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="supplier")
@@ -23,6 +24,9 @@ public class Supplier implements Serializable {
     private Long suppliercode;
     private String name;
     private String country;
+
+    @ManyToMany(cascade = {CascadeType.ALL},mappedBy="suppliers")
+    private List<Item> itemssupplied;
 
     public Long getSuppliercode() {
         return suppliercode;
@@ -47,7 +51,14 @@ public class Supplier implements Serializable {
     public void setCountry(String country) {
         this.country = country;
     }
-//set de items
+
+    public List<Item> getItemssupplied() {
+        return itemssupplied;
+    }
+
+    public void setItemssupplied(List<Item> itemssupplied) {
+        this.itemssupplied = itemssupplied;
+    }
 
 
 }

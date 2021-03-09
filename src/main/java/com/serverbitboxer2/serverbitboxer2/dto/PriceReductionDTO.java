@@ -1,4 +1,55 @@
 package com.serverbitboxer2.serverbitboxer2.dto;
 
-public class PriceReductionDTO {
+import com.serverbitboxer2.serverbitboxer2.entities.Item;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+public class PriceReductionDTO implements Serializable {
+    private Long pricereductioncode;
+    private double reducedprice;
+    private Date startdate;
+    private Date enddate;
+    private List<ItemDTO> reducedpriceitems;
+
+    public Long getPricereductioncode() {
+        return pricereductioncode;
+    }
+
+    public void setPricereductioncode(Long pricereductioncode) {
+        this.pricereductioncode = pricereductioncode;
+    }
+
+    public double getReducedprice() {
+        return reducedprice;
+    }
+
+    public void setReducedprice(double reducedprice) {
+        this.reducedprice = reducedprice;
+    }
+
+    public Date getStartdate() {
+        return startdate;
+    }
+
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
+    }
+
+    public Date getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
+    }
+
+    public List<ItemDTO> getReducedpriceitems() {
+        return reducedpriceitems;
+    }
+
+    public void setReducedpriceitems(List<ItemDTO> reducedpriceitems) {
+        this.reducedpriceitems = reducedpriceitems;
+    }
 }

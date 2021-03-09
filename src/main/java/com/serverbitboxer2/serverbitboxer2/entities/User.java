@@ -21,6 +21,7 @@ public class User implements Serializable {
     private String email;
     private String address;
     private String phone;
+
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "creator")
     private List<Item> createditems;
 

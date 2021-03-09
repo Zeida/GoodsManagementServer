@@ -3,6 +3,7 @@ package com.serverbitboxer2.serverbitboxer2.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="pricereduction")
@@ -25,6 +26,9 @@ public class PriceReduction implements Serializable {
     private double reducedprice;
     private Date startdate;
     private Date enddate;
+
+    @ManyToMany(cascade = {CascadeType.ALL},mappedBy="reductions")
+    private List<Item> reducedpriceitems;
 
     public Long getPricereductioncode() {
         return pricereductioncode;

@@ -5,6 +5,7 @@ import com.serverbitboxer2.serverbitboxer2.globaldata.ItemStateEnum;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="item")
@@ -17,12 +18,20 @@ public class Item implements Serializable {
     private double price;
     @Enumerated(EnumType.STRING)
     private ItemStateEnum state;
-    private Supplier supplier;
-    private PriceReduction pricereduction;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="item", joinColumns={@JoinColumn(name="itemcode")}, inverseJoinColumns={@JoinColumn(name="suppliercode")})
+    private List<Supplier> suppliers;
     private Date creationdate;
+
     @ManyToOne
     @JoinColumn(name="creator", nullable = false)
     private User creator;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="item", joinColumns={@JoinColumn(name="itemcode")}, inverseJoinColumns={@JoinColumn(name="pricereductioncode")})
+    private List<PriceReduction> reductions;
+
 
 
     public Long getItemcode() {
@@ -36,8 +45,8 @@ public class Item implements Serializable {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", state=" + state +
-                ", supplier=" + supplier +
-                ", pricereduction=" + pricereduction +
+                ", supplier=" + suppliers +
+                ", pricereduction=" + reductions +
                 ", creationdate=" + creationdate +
                 ", creator=" + creator +
                 '}';
@@ -71,21 +80,6 @@ public class Item implements Serializable {
         this.state = state;
     }
 
-    public Supplier getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
-    }
-
-    public PriceReduction getPricereduction() {
-        return pricereduction;
-    }
-
-    public void setPricereduction(PriceReduction pricereduction) {
-        this.pricereduction = pricereduction;
-    }
 
     public User getCreator() {
         return creator;
@@ -101,5 +95,9 @@ public class Item implements Serializable {
 
     public void setCreationdate(Date creationdate) {
         this.creationdate = creationdate;
+    }
+
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
     }
 }
