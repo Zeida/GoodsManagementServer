@@ -20,7 +20,9 @@ public class Item implements Serializable {
     private Supplier supplier;
     private PriceReduction pricereduction;
     private Date creationdate;
-    private User user;
+    @ManyToOne
+    @JoinColumn(name="creator", nullable = false)
+    private User creator;
 
 
     public Long getItemcode() {
@@ -37,7 +39,7 @@ public class Item implements Serializable {
                 ", supplier=" + supplier +
                 ", pricereduction=" + pricereduction +
                 ", creationdate=" + creationdate +
-                ", user=" + user +
+                ", creator=" + creator +
                 '}';
     }
 
@@ -85,12 +87,12 @@ public class Item implements Serializable {
         this.pricereduction = pricereduction;
     }
 
-    public User getUser() {
-        return user;
+    public User getCreator() {
+        return creator;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
     public Date getCreationdate() {

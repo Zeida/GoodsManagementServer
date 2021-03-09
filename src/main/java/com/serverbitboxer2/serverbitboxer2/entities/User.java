@@ -1,7 +1,10 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
 
+import org.hibernate.annotations.IndexColumn;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="user")
@@ -18,6 +21,8 @@ public class User implements Serializable {
     private String email;
     private String address;
     private String phone;
+    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "creator")
+    private List<Item> createditems;
 
     public String getName() {
         return name;
@@ -59,8 +64,6 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-
-
     public Long getUsercode() {
         return usercode;
     }
@@ -83,5 +86,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Item> getCreateditems() {
+        return createditems;
+    }
+
+    public void setCreateditems(List<Item> createditems) {
+        this.createditems = createditems;
     }
 }
