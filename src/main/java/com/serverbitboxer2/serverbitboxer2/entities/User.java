@@ -13,7 +13,8 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long usercode;
+    private Integer userid;
+    private Integer usercode;
     private String username;
     private String password;
     private String name;
@@ -65,11 +66,11 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public Long getUsercode() {
+    public Integer getUsercode() {
         return usercode;
     }
 
-    public void setUsercode(Long usercode) {
+    public void setUsercode(Integer usercode) {
         this.usercode = usercode;
     }
 

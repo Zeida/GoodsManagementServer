@@ -13,7 +13,8 @@ public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long itemcode;
+    private Integer itemid;
+    private Integer itemcode;
     private String description;
     private double price;
     @Enumerated(EnumType.STRING)
@@ -32,12 +33,6 @@ public class Item implements Serializable {
     @JoinTable(name="item", joinColumns={@JoinColumn(name="itemcode")}, inverseJoinColumns={@JoinColumn(name="pricereductioncode")})
     private List<PriceReduction> reductions;
 
-
-
-    public Long getItemcode() {
-        return itemcode;
-    }
-
     @Override
     public String toString() {
         return "Item{" +
@@ -52,8 +47,28 @@ public class Item implements Serializable {
                 '}';
     }
 
-    public void setItemcode(Long itemcode) {
+    public Integer getItemcode() {
+        return itemcode;
+    }
+
+    public void setItemcode(Integer itemcode) {
         this.itemcode = itemcode;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public List<Supplier> getSuppliers() {
+        return suppliers;
+    }
+
+    public List<PriceReduction> getReductions() {
+        return reductions;
+    }
+
+    public void setReductions(List<PriceReduction> reductions) {
+        this.reductions = reductions;
     }
 
     public String getDescription() {

@@ -22,7 +22,18 @@ public class PriceReduction implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long pricereductioncode;
+    private Integer pricereductionid;
+
+    private Integer pricereductioncode;
+
+    public Integer getPricereductioncode() {
+        return pricereductioncode;
+    }
+
+    public void setPricereductioncode(Integer pricereductioncode) {
+        this.pricereductioncode = pricereductioncode;
+    }
+
     private double reducedprice;
     private Date startdate;
     private Date enddate;
@@ -30,12 +41,12 @@ public class PriceReduction implements Serializable {
     @ManyToMany(cascade = {CascadeType.ALL},mappedBy="reductions")
     private List<Item> reducedpriceitems;
 
-    public Long getPricereductioncode() {
-        return pricereductioncode;
+    public List<Item> getReducedpriceitems() {
+        return reducedpriceitems;
     }
 
-    public void setPricereductioncode(Long pricereductioncode) {
-        this.pricereductioncode = pricereductioncode;
+    public void setReducedpriceitems(List<Item> reducedpriceitems) {
+        this.reducedpriceitems = reducedpriceitems;
     }
 
     public double getReducedprice() {
