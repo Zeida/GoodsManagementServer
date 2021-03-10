@@ -6,10 +6,19 @@ import java.util.List;
 
 public class SupplierDTO {
 
+
+    private Integer supplierid;
     private Long suppliercode;
     private String name;
     private String country;
     private List<ItemDTO> itemssupplied;
+    public Integer getSupplierid() {
+        return supplierid;
+    }
+
+    public void setSupplierid(Integer supplierid) {
+        this.supplierid = supplierid;
+    }
 
     public List<ItemDTO> getItemssupplied() {
         return itemssupplied;

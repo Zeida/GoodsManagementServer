@@ -1,7 +1,5 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
-
 import com.serverbitboxer2.serverbitboxer2.globaldata.ItemStateEnum;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;

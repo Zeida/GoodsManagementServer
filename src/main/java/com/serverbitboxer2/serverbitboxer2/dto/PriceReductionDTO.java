@@ -7,11 +7,20 @@ import java.util.Date;
 import java.util.List;
 
 public class PriceReductionDTO implements Serializable {
+    private Integer pricereductionid;
     private Long pricereductioncode;
     private double reducedprice;
     private Date startdate;
     private Date enddate;
     private List<ItemDTO> reducedpriceitems;
+
+    public Integer getPricereductionid() {
+        return pricereductionid;
+    }
+
+    public void setPricereductionid(Integer pricereductionid) {
+        this.pricereductionid = pricereductionid;
+    }
 
     public Long getPricereductioncode() {
         return pricereductioncode;

@@ -2,12 +2,14 @@ package com.serverbitboxer2.serverbitboxer2.services;
 import com.serverbitboxer2.serverbitboxer2.assembler.ItemAssembler;
 import com.serverbitboxer2.serverbitboxer2.assembler.PriceReductionAssembler;
 import com.serverbitboxer2.serverbitboxer2.assembler.SupplierAssembler;
+import com.serverbitboxer2.serverbitboxer2.assembler.UserAssembler;
 import com.serverbitboxer2.serverbitboxer2.dao.ItemDAO;
 import com.serverbitboxer2.serverbitboxer2.dao.SupplierDAO;
 import com.serverbitboxer2.serverbitboxer2.dao.UserDAO;
 import com.serverbitboxer2.serverbitboxer2.dto.ItemDTO;
 import com.serverbitboxer2.serverbitboxer2.dto.PriceReductionDTO;
 import com.serverbitboxer2.serverbitboxer2.dto.SupplierDTO;
+import com.serverbitboxer2.serverbitboxer2.dto.UserDTO;
 import com.serverbitboxer2.serverbitboxer2.entities.Item;
 import com.serverbitboxer2.serverbitboxer2.entities.PriceReduction;
 import com.serverbitboxer2.serverbitboxer2.entities.Supplier;
@@ -41,6 +43,7 @@ public class ItemService implements IItemService{
     private ItemAssembler itemAssembler = new ItemAssembler();
     private SupplierAssembler supplierAssembler = new SupplierAssembler();
     private PriceReductionAssembler priceReductionAssembler = new PriceReductionAssembler();
+    private UserAssembler userAssembler = new UserAssembler();
     @Override
     public List<ItemDTO> findAll() {
         List<ItemDTO> itemsDAO = new ArrayList<>();
@@ -66,11 +69,11 @@ public class ItemService implements IItemService{
 
         if(item.isPresent()){
             Item item1 = item.get();
-            User user= userDAO.findByUsercode(item1.getCreator().getUsercode());
+            UserDTO user= userDAO.findByUsercode(item1.getCreator().getUsercode());
             item1.setItemcode(itemDTO.getItemcode());
             item1.setCreationdate(itemDTO.getCreationdate());
             item1.setDescription(itemDTO.getDescription());
-            item1.setCreator(user);
+            item1.setCreator(userAssembler.DTO2Entity(user));
             item1.setState(itemDTO.getState());
             item1.setPrice(itemDTO.getPrice());
             if (itemDTO.getSuppliers() != null){

@@ -15,7 +15,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer userid;
-    private Integer usercode;
+    private Long usercode;
     private String username;
     @JsonIgnore
     private String password;
@@ -68,11 +68,11 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public Integer getUsercode() {
+    public Long getUsercode() {
         return usercode;
     }
 
-    public void setUsercode(Integer usercode) {
+    public void setUsercode(Long usercode) {
         this.usercode = usercode;
     }
 

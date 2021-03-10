@@ -10,11 +10,12 @@ public class PriceReductionAssembler {
 
     private ModelMapper modelMapper = new ModelMapper();
 
-    private PriceReductionDTO entity2DTO(PriceReduction priceReduction){
+    public PriceReductionDTO entity2DTO(PriceReduction priceReduction){
         return modelMapper.map(priceReduction, PriceReductionDTO.class);
     }
 
     public PriceReduction DTO2Entity(PriceReductionDTO priceReductionDTO){
         return modelMapper.map(priceReductionDTO, PriceReduction.class);
     }
+
 }

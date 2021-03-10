@@ -24,13 +24,13 @@ public class PriceReduction implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer pricereductionid;
 
-    private Integer pricereductioncode;
+    private Long pricereductioncode;
 
-    public Integer getPricereductioncode() {
+    public Long getPricereductioncode() {
         return pricereductioncode;
     }
 
-    public void setPricereductioncode(Integer pricereductioncode) {
+    public void setPricereductioncode(Long pricereductioncode) {
         this.pricereductioncode = pricereductioncode;
     }
 

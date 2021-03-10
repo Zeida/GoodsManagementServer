@@ -22,18 +22,18 @@ public class Supplier implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer supplierid;
-    private Integer suppliercode;
+    private Long suppliercode;
     private String name;
     private String country;
 
     @ManyToMany(cascade = {CascadeType.ALL},mappedBy="suppliers")
     private List<Item> itemssupplied;
 
-    public Integer getSuppliercode() {
+    public Long getSuppliercode() {
         return suppliercode;
     }
 
-    public void setSuppliercode(Integer suppliercode) {
+    public void setSuppliercode(Long suppliercode) {
         this.suppliercode = suppliercode;
     }
 

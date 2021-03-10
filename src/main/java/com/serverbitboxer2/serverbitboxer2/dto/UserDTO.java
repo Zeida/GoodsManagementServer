@@ -1,10 +1,7 @@
 package com.serverbitboxer2.serverbitboxer2.dto;
-
-import com.serverbitboxer2.serverbitboxer2.entities.Item;
 import java.util.List;
-
 public class UserDTO {
-
+    private Integer userid;
     private Long usercode;
     private String username;
     private String password;
@@ -13,6 +10,14 @@ public class UserDTO {
     private String email;
     private String address;
     private String phone;
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
 
     private List<ItemDTO> createditems;
 

@@ -8,6 +8,7 @@ import java.util.List;
 public class ItemDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private Integer itemid;
     private Long itemcode;
     private String description;
     private double price;
@@ -16,6 +17,14 @@ public class ItemDTO implements Serializable {
     private Date creationdate;
     private UserDTO creator;
     private List<PriceReductionDTO> reductions;
+
+    public Integer getItemid() {
+        return itemid;
+    }
+
+    public void setItemid(Integer itemid) {
+        this.itemid = itemid;
+    }
 
     public Long getItemcode() {
         return itemcode;

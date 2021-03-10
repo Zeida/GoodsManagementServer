@@ -8,8 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface ItemDAO extends JpaRepository<Item, Long> {
-
     void deleteByItemcode(Long itemCode);
-
     Optional<Item> findByItemcode(Long itemCode);
 }
