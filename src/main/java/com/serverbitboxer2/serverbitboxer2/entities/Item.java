@@ -14,7 +14,7 @@ public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer itemid;
-    private Integer itemcode;
+    private Long itemcode;
     private String description;
     private double price;
     @Enumerated(EnumType.STRING)
@@ -47,11 +47,11 @@ public class Item implements Serializable {
                 '}';
     }
 
-    public Integer getItemcode() {
+    public Long getItemcode() {
         return itemcode;
     }
 
-    public void setItemcode(Integer itemcode) {
+    public void setItemcode(Long itemcode) {
         this.itemcode = itemcode;
     }
 

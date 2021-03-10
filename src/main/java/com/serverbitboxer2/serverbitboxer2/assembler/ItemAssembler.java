@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 public class ItemAssembler {
     private ModelMapper modelMapper = new ModelMapper();
 
-    private ItemDTO entity2DTO(Item item){
+    public ItemDTO entity2DTO(Item item){
         return modelMapper.map(item, ItemDTO.class);
     }
 
-    private Item DTO2Entity(ItemDTO itemDTO){
+    public Item DTO2Entity(ItemDTO itemDTO){
         return modelMapper.map(itemDTO, Item.class);
     }
 
