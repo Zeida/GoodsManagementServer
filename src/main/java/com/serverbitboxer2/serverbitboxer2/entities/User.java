@@ -1,5 +1,6 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.IndexColumn;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class User implements Serializable {
     private Integer userid;
     private Integer usercode;
     private String username;
+    @JsonIgnore
     private String password;
     private String name;
     private String surname;

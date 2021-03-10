@@ -1,7 +1,9 @@
 package com.serverbitboxer2.serverbitboxer2.dao;
 
 import com.serverbitboxer2.serverbitboxer2.entities.PriceReduction;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PriceReductionDAO extends CrudRepository<PriceReduction, Long> {
+@Repository
+public interface PriceReductionDAO extends JpaRepository<PriceReduction, Long> {
 }
