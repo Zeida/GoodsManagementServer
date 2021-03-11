@@ -1,5 +1,7 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
 import com.serverbitboxer2.serverbitboxer2.globaldata.ItemStateEnum;
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -18,17 +20,17 @@ public class Item implements Serializable {
     @Enumerated(EnumType.STRING)
     private ItemStateEnum state;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name="item", joinColumns={@JoinColumn(name="itemcode")}, inverseJoinColumns={@JoinColumn(name="suppliercode")})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "itemssupplied")
     private List<Supplier> suppliers;
     private Date creationdate;
 
-    @ManyToOne
-    @JoinColumn(name="creator", nullable = false)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "usercode")
     private User creator;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name="item", joinColumns={@JoinColumn(name="itemcode")}, inverseJoinColumns={@JoinColumn(name="pricereductioncode")})
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "reducedpriceitems")
     private List<PriceReduction> reductions;
     public Item(){}
     public Item(Integer itemid, Long itemcode, String description, double price, ItemStateEnum state, List<Supplier> suppliers, Date creationdate, User creator, List<PriceReduction> reductions) {

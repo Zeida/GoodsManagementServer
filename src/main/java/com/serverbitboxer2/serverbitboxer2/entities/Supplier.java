@@ -26,7 +26,7 @@ public class Supplier implements Serializable {
     private String name;
     private String country;
 
-    @ManyToMany(cascade = {CascadeType.ALL},mappedBy="suppliers")
+    @ManyToMany(mappedBy = "suppliers")
     private List<Item> itemssupplied;
 
     public Long getSuppliercode() {

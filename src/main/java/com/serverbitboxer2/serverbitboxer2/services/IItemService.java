@@ -5,7 +5,6 @@ import com.serverbitboxer2.serverbitboxer2.dto.ItemDTO;
 import java.util.List;
 
 public interface IItemService {
-
     List<ItemDTO> findAll();
     ItemDTO getItemByCode(Long itemCode) ;
     void createItem(ItemDTO item);

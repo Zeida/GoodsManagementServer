@@ -14,8 +14,10 @@ import com.serverbitboxer2.serverbitboxer2.dto.UserDTO;
 import com.serverbitboxer2.serverbitboxer2.entities.Item;
 import com.serverbitboxer2.serverbitboxer2.entities.PriceReduction;
 import com.serverbitboxer2.serverbitboxer2.entities.Supplier;
+import com.serverbitboxer2.serverbitboxer2.entities.User;
 import com.serverbitboxer2.serverbitboxer2.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -46,48 +48,28 @@ public class ItemService implements IItemService{
     private UserAssembler userAssembler = new UserAssembler();
     @Override
     public List<ItemDTO> findAll() {
-        List<ItemDTO> itemsDAO = new ArrayList<>();
-        for (Item item: itemDAO.findAll()) itemsDAO.add(itemAssembler.entity2DTO(item));
-        return itemsDAO;
+        List<ItemDTO> itemsDTO= new ArrayList<>();
+        for (Item item: itemDAO.findAll()) itemsDTO.add(itemAssembler.entity2DTO(item));
+        return itemsDTO;
     }
-
+    @Async
     @Override
     public void createItem(ItemDTO item) {
         itemDAO.save(itemAssembler.DTO2Entity(item));
     }
 
     @Override
-    public void deleteItem(Long itemCode) {
-        itemDAO.deleteByItemcode(itemCode);
+    public void deleteItem(Long itemcode) {
+        Optional<Item> item = itemDAO.findByItemcode(itemcode);
+        if(item == null){
+            throw new ResourceNotFoundException("The item with the code: " + itemcode +"could not be updated" );
+        }
+        itemDAO.deleteByItemcode(itemcode);
     }
 
     @Override
     public boolean updateItem(Long itemCode, ItemDTO itemDTO) {
-        Optional<Item> item = itemDAO.findByItemcode(itemCode);
-        List<Supplier> suppliers = new ArrayList<>(){};
-        List<PriceReduction> priceReductions = new ArrayList<>();
-
-        if(item.isPresent()){
-            Item item1 = item.get();
-            UserDTO user= userDAO.findByUsercode(item1.getCreator().getUsercode());
-            item1.setItemcode(itemDTO.getItemcode());
-            item1.setCreationdate(itemDTO.getCreationdate());
-            item1.setDescription(itemDTO.getDescription());
-            item1.setCreator(userAssembler.DTO2Entity(user));
-            item1.setState(itemDTO.getState());
-            item1.setPrice(itemDTO.getPrice());
-            if (itemDTO.getSuppliers() != null){
-                for (SupplierDTO supplierDTO : itemDTO.getSuppliers())
-                    suppliers.add(supplierAssembler.DTO2Entity(supplierDTO));
-                item1.setSuppliers(suppliers);
-            }else item1.setReductions(new ArrayList<>());
-
-            if (itemDTO.getReductions() != null){
-                for (PriceReductionDTO priceReductionDTO : itemDTO.getReductions())
-                    priceReductions.add(priceReductionAssembler.DTO2Entity(priceReductionDTO));
-                item1.setReductions(priceReductions);
-            }else item1.setReductions(new ArrayList<>());
-            itemDAO.save(item1);
+        if(true){
             return true;
         }else throw new ResourceNotFoundException("The item with the code: " + itemCode +"could not be updated" );
     }

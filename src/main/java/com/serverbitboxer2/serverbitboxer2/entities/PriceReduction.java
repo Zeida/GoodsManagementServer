@@ -25,6 +25,9 @@ public class PriceReduction implements Serializable {
     private Integer pricereductionid;
 
     private Long pricereductioncode;
+    private double reducedprice;
+    private Date startdate;
+    private Date enddate;
 
     public Long getPricereductioncode() {
         return pricereductioncode;
@@ -34,11 +37,9 @@ public class PriceReduction implements Serializable {
         this.pricereductioncode = pricereductioncode;
     }
 
-    private double reducedprice;
-    private Date startdate;
-    private Date enddate;
 
-    @ManyToMany(cascade = {CascadeType.ALL},mappedBy="reductions")
+
+    @ManyToMany(mappedBy = "reductions")
     private List<Item> reducedpriceitems;
 
     public PriceReduction(){}

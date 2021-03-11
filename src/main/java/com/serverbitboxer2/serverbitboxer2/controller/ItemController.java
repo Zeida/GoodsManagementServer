@@ -6,7 +6,6 @@ import com.serverbitboxer2.serverbitboxer2.dto.ItemDTO;
 import com.serverbitboxer2.serverbitboxer2.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,13 +41,13 @@ public class ItemController {
         ItemDTO itemDTO = objectMapper.readValue(item, ItemDTO.class);
         return itemService.updateItem(itemcode, itemDTO);
     }
-    @DeleteMapping("item/{itemcode}/delete")
+    @DeleteMapping("/item/{itemcode}/delete")
     public void deleteItem(@PathVariable(name = "itemcode")Long itemcode){
         ItemDTO itemDTO = itemService.getItemByCode(itemcode);
         if(itemDTO == null) {
             throw new RuntimeException("The Item with code: "+ itemcode +" does not exist");
         }else{
-            itemService.getItemByCode(itemcode);
+            itemService.deleteItem(itemcode);
         }
 
     }

@@ -2,13 +2,10 @@ package com.serverbitboxer2.serverbitboxer2.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.serverbitboxer2.serverbitboxer2.dto.ItemDTO;
 import com.serverbitboxer2.serverbitboxer2.dto.PriceReductionDTO;
-import com.serverbitboxer2.serverbitboxer2.entities.PriceReduction;
 import com.serverbitboxer2.serverbitboxer2.services.PriceReductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

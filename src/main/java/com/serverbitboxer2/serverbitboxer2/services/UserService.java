@@ -6,14 +6,19 @@ import com.serverbitboxer2.serverbitboxer2.dao.ItemDAO;
 import com.serverbitboxer2.serverbitboxer2.dao.UserDAO;
 import com.serverbitboxer2.serverbitboxer2.dto.UserDTO;
 import com.serverbitboxer2.serverbitboxer2.entities.User;
+import com.serverbitboxer2.serverbitboxer2.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
+@Transactional
 public class UserService implements IUserService{
 
     @PersistenceContext
@@ -44,7 +49,6 @@ public class UserService implements IUserService{
     public List<UserDTO> findUsersByName(String name) {
         List<User> users = userDAO.findAllByName(name);
         List<UserDTO> usersDTO = new ArrayList<>();
-        //Gestionar qué ocurre cuando no hay usuarios con ese nombre
         for(User user: users){
             usersDTO.add(userAssembler.entity2DTO(user));
         }
@@ -52,8 +56,12 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public UserDTO findUserByCode(Long userCode ) {
-        return userDAO.findByUsercode(userCode);
+    public UserDTO findUserByCode(Long usercode ) {
+        Optional<User> user = userDAO.findByUsercode(usercode);
+        if(user.isPresent()){
+            return (userAssembler.entity2DTO(user.get()));
+        }else throw new ResourceNotFoundException("The User with the code: " + usercode + "does not exist");
+
     }
 
     @Override
@@ -64,7 +72,6 @@ public class UserService implements IUserService{
     @Override
     public void deleteUser(Long userCode) {
         userDAO.deleteByUsercode(userCode);
-
     }
 
 }

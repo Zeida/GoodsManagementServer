@@ -41,13 +41,13 @@ public class UserController {
         UserDTO userDTO = objectMapper.readValue(user, UserDTO.class);
         userService.createUser(userDTO);
     }
-    @DeleteMapping("users/{itemcode}/delete")
+
+    @DeleteMapping("/user/{usercode}/delete")
     public void deleteUser(@PathVariable(name = "usercode") Long usercode) {
         UserDTO userDTO = userService.findUserByCode(usercode);
         if(userDTO==null){
             throw new RuntimeException("The User with code: "+ usercode +" does not exist");
         }
         userService.deleteUser(usercode);
-
     }
 }

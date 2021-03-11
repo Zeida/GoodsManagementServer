@@ -5,6 +5,7 @@ import org.hibernate.annotations.IndexColumn;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,8 +26,18 @@ public class User implements Serializable {
     private String address;
     private String phone;
 
-    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "creator")
+    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Item> createditems;
+
+    public void addItem(Item item) {
+        if(createditems == null) {
+            createditems = new ArrayList<>();
+        }
+        createditems.add(item);
+        item.setCreator(this);
+    }
+
+
     public User(){}
     public User(Integer userid, Long usercode, String username, String password, String name, String surname, String email, String address, String phone, List<Item> createditems) {
         this.userid = userid;
