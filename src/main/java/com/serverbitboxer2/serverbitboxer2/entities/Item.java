@@ -30,6 +30,18 @@ public class Item implements Serializable {
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name="item", joinColumns={@JoinColumn(name="itemcode")}, inverseJoinColumns={@JoinColumn(name="pricereductioncode")})
     private List<PriceReduction> reductions;
+    public Item(){}
+    public Item(Integer itemid, Long itemcode, String description, double price, ItemStateEnum state, List<Supplier> suppliers, Date creationdate, User creator, List<PriceReduction> reductions) {
+        this.itemid = itemid;
+        this.itemcode = itemcode;
+        this.description = description;
+        this.price = price;
+        this.state = state;
+        this.suppliers = suppliers;
+        this.creationdate = creationdate;
+        this.creator = creator;
+        this.reductions = reductions;
+    }
 
     @Override
     public String toString() {

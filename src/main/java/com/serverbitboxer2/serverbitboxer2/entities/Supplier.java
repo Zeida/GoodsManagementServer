@@ -33,6 +33,15 @@ public class Supplier implements Serializable {
         return suppliercode;
     }
 
+    public Supplier(){}
+    public Supplier(Integer supplierid, Long suppliercode, String name, String country, List<Item> itemssupplied) {
+        this.supplierid = supplierid;
+        this.suppliercode = suppliercode;
+        this.name = name;
+        this.country = country;
+        this.itemssupplied = itemssupplied;
+    }
+
     public void setSuppliercode(Long suppliercode) {
         this.suppliercode = suppliercode;
     }

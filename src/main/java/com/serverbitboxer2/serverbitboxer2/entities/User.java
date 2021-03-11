@@ -27,6 +27,19 @@ public class User implements Serializable {
 
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "creator")
     private List<Item> createditems;
+    public User(){}
+    public User(Integer userid, Long usercode, String username, String password, String name, String surname, String email, String address, String phone, List<Item> createditems) {
+        this.userid = userid;
+        this.usercode = usercode;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
+        this.createditems = createditems;
+    }
 
     public String getName() {
         return name;

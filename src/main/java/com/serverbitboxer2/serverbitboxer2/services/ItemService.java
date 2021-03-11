@@ -1,4 +1,5 @@
 package com.serverbitboxer2.serverbitboxer2.services;
+
 import com.serverbitboxer2.serverbitboxer2.assembler.ItemAssembler;
 import com.serverbitboxer2.serverbitboxer2.assembler.PriceReductionAssembler;
 import com.serverbitboxer2.serverbitboxer2.assembler.SupplierAssembler;
@@ -13,7 +14,6 @@ import com.serverbitboxer2.serverbitboxer2.dto.UserDTO;
 import com.serverbitboxer2.serverbitboxer2.entities.Item;
 import com.serverbitboxer2.serverbitboxer2.entities.PriceReduction;
 import com.serverbitboxer2.serverbitboxer2.entities.Supplier;
-import com.serverbitboxer2.serverbitboxer2.entities.User;
 import com.serverbitboxer2.serverbitboxer2.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

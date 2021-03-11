@@ -1,7 +1,6 @@
 package com.serverbitboxer2.serverbitboxer2.services;
 
 import com.serverbitboxer2.serverbitboxer2.dto.PriceReductionDTO;
-import com.serverbitboxer2.serverbitboxer2.entities.PriceReduction;
 
 import java.util.List;
 

@@ -7,12 +7,13 @@ import com.serverbitboxer2.serverbitboxer2.dao.UserDAO;
 import com.serverbitboxer2.serverbitboxer2.dto.UserDTO;
 import com.serverbitboxer2.serverbitboxer2.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class UserService implements IUserService{
 
     @PersistenceContext
@@ -25,12 +26,12 @@ public class UserService implements IUserService{
     private ItemDAO itemDAO;
 
     //Assemblers
-    private UserAssembler userAssembler;
-    private ItemAssembler itemAssembler;
+    private UserAssembler userAssembler = new UserAssembler();
+    private ItemAssembler itemAssembler = new ItemAssembler();
 
 
     @Override
-    public List<UserDTO> findAllUsers() {
+    public List<UserDTO> findAll() {
         List<User> users = userDAO.findAll();
         List<UserDTO> usersDTO = new ArrayList<>();
         for(User user: users){

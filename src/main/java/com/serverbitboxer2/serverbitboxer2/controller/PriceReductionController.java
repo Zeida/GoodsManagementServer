@@ -1,7 +1,49 @@
 package com.serverbitboxer2.serverbitboxer2.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.serverbitboxer2.serverbitboxer2.dto.ItemDTO;
+import com.serverbitboxer2.serverbitboxer2.dto.PriceReductionDTO;
+import com.serverbitboxer2.serverbitboxer2.entities.PriceReduction;
+import com.serverbitboxer2.serverbitboxer2.services.PriceReductionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/api")
 public class PriceReductionController {
+    @Autowired
+    private PriceReductionService priceReductionService;
+    private ObjectMapper objectMapper = new ObjectMapper();
+
+    @GetMapping("/pricereduction/{pricereductioncode}")
+    public PriceReductionDTO findPriceReductionByCode(@PathVariable(name = "pricereductioncode") Long priceReductionCode) {
+        PriceReductionDTO priceReductionDTO = priceReductionService.findPriceReductionByCode(priceReductionCode);
+        if(priceReductionDTO==null){
+            throw new RuntimeException("The Price Reduction with code: "+ priceReductionCode +" does not exist");
+
+        }
+        return priceReductionDTO;
+    }
+    @GetMapping("/pricereductions")
+    public List<PriceReductionDTO> findAll() {
+        return priceReductionService.findAll();
+    }
+    @PostMapping(value = "/pricereduction/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void createPriceReduction(@RequestBody String priceReduction) throws JsonProcessingException {
+        PriceReductionDTO priceReductionDTO = objectMapper.readValue(priceReduction, PriceReductionDTO.class);
+        priceReductionService.createPriceReduction(priceReductionDTO);
+    }
+    @DeleteMapping("pricereduction/{pricereductioncode}/delete")
+    public void deletePriceReduction(@PathVariable(name = "pricereductioncode") Long priceReductionCode) {
+        PriceReductionDTO priceReductionDTO = priceReductionService.findPriceReductionByCode(priceReductionCode);
+        if(priceReductionDTO == null){
+            throw new RuntimeException("The Price Reduction with code: "+ priceReductionCode +" does not exist");
+        }
+        priceReductionService.deletePriceReduction(priceReductionCode);
+    }
 }
