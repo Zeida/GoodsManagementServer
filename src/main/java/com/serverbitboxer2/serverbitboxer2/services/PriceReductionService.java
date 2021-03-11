@@ -4,6 +4,7 @@ import com.serverbitboxer2.serverbitboxer2.assembler.PriceReductionAssembler;
 import com.serverbitboxer2.serverbitboxer2.dao.PriceReductionDAO;
 import com.serverbitboxer2.serverbitboxer2.dto.PriceReductionDTO;
 import com.serverbitboxer2.serverbitboxer2.entities.PriceReduction;
+import com.serverbitboxer2.serverbitboxer2.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -28,8 +30,12 @@ public class PriceReductionService implements IPriceReductionService {
     PriceReductionAssembler priceReductionAssembler = new PriceReductionAssembler();
 
     @Override
-    public PriceReductionDTO findPriceReductionByCode(Long priceReductionCode) {
-        return priceReductionDAO.findByPricereductioncode(priceReductionCode);
+    public PriceReductionDTO findByPricereductioncode(Long priceReductionCode) {
+        Optional<PriceReduction> priceReduction = priceReductionDAO.findByPricereductioncode(priceReductionCode);
+        if(priceReduction.isPresent()){
+            return (priceReductionAssembler.entity2DTO(priceReduction.get()));
+        }else throw new ResourceNotFoundException("The Price Reduction with the code: " + priceReductionCode + "does not exist");
+
     }
 
     @Override

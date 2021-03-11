@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IItemService {
     List<ItemDTO> findAll();
-    ItemDTO getItemByCode(Long itemCode) ;
+    ItemDTO findByItemcode(Long itemCode) ;
     void createItem(ItemDTO item);
     void deleteItem(Long itemCode);
     boolean updateItem(Long itemCode, ItemDTO itemDTO);

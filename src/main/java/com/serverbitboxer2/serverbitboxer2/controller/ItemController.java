@@ -23,7 +23,7 @@ public class ItemController {
     }
     @GetMapping("/item/{itemcode}")
     public ItemDTO getItemByCode(@PathVariable(name = "itemcode") Long itemcode){
-        ItemDTO itemDTO=itemService.getItemByCode(itemcode);
+        ItemDTO itemDTO=itemService.findByItemcode(itemcode);
         if(itemDTO == null) {
             throw new RuntimeException("The Item with code: "+ itemcode +" does not exist");
         }
@@ -43,7 +43,7 @@ public class ItemController {
     }
     @DeleteMapping("/item/{itemcode}/delete")
     public void deleteItem(@PathVariable(name = "itemcode")Long itemcode){
-        ItemDTO itemDTO = itemService.getItemByCode(itemcode);
+        ItemDTO itemDTO = itemService.findByItemcode(itemcode);
         if(itemDTO == null) {
             throw new RuntimeException("The Item with code: "+ itemcode +" does not exist");
         }else{

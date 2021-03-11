@@ -43,7 +43,7 @@ public class SupplierService implements ISupplierService{
         if(supplier.isPresent()){
             return (supplierAssembler.entity2DTO(supplier.get()));
 
-        }else throw new ResourceNotFoundException("The item with the code: " + suppliercode + "does not exist");
+        }else throw new ResourceNotFoundException("The Supplier with the code: " + suppliercode + "does not exist");
     }
 
     @Override

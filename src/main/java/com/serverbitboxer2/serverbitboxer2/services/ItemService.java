@@ -75,7 +75,7 @@ public class ItemService implements IItemService{
     }
 
     @Override
-    public ItemDTO getItemByCode(Long itemCode) {
+    public ItemDTO findByItemcode(Long itemCode) {
         Optional<Item> item = itemDAO.findByItemcode(itemCode);
         if(item.isPresent()){
             return (itemAssembler.entity2DTO(item.get()));

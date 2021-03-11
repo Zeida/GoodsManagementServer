@@ -1,12 +1,13 @@
 package com.serverbitboxer2.serverbitboxer2.dao;
 
-import com.serverbitboxer2.serverbitboxer2.dto.PriceReductionDTO;
 import com.serverbitboxer2.serverbitboxer2.entities.PriceReduction;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface PriceReductionDAO extends JpaRepository<PriceReduction, Long> {
-    PriceReductionDTO findByPricereductioncode(Long priceReductionCode);
+    Optional<PriceReduction> findByPricereductioncode(Long priceReductionCode);
     void deleteByPricereductioncode(Long priceReductionCode);
 }

@@ -19,7 +19,7 @@ public class PriceReductionController {
 
     @GetMapping("/pricereduction/{pricereductioncode}")
     public PriceReductionDTO findPriceReductionByCode(@PathVariable(name = "pricereductioncode") Long priceReductionCode) {
-        PriceReductionDTO priceReductionDTO = priceReductionService.findPriceReductionByCode(priceReductionCode);
+        PriceReductionDTO priceReductionDTO = priceReductionService.findByPricereductioncode(priceReductionCode);
         if(priceReductionDTO==null){
             throw new RuntimeException("The Price Reduction with code: "+ priceReductionCode +" does not exist");
 
@@ -37,7 +37,7 @@ public class PriceReductionController {
     }
     @DeleteMapping("pricereduction/{pricereductioncode}/delete")
     public void deletePriceReduction(@PathVariable(name = "pricereductioncode") Long priceReductionCode) {
-        PriceReductionDTO priceReductionDTO = priceReductionService.findPriceReductionByCode(priceReductionCode);
+        PriceReductionDTO priceReductionDTO = priceReductionService.findByPricereductioncode(priceReductionCode);
         if(priceReductionDTO == null){
             throw new RuntimeException("The Price Reduction with code: "+ priceReductionCode +" does not exist");
         }
