@@ -60,10 +60,7 @@ public class ItemService implements IItemService{
 
     @Override
     public void deleteItem(Long itemcode) {
-        Optional<Item> item = itemDAO.findByItemcode(itemcode);
-        if(item == null){
-            throw new ResourceNotFoundException("The item with the code: " + itemcode +"could not be updated" );
-        }
+        //Optional<Item> item = itemDAO.findByItemcode(itemcode);
         itemDAO.deleteByItemcode(itemcode);
     }
 
