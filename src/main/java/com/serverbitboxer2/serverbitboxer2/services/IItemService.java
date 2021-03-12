@@ -1,6 +1,7 @@
 package com.serverbitboxer2.serverbitboxer2.services;
 
 import com.serverbitboxer2.serverbitboxer2.dto.ItemDTO;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -13,6 +14,6 @@ public interface IItemService {
 
     void deleteItem(Long itemCode);
 
-    boolean updateItem(Long itemCode, ItemDTO itemDTO);
+    ResponseEntity<ItemDTO> updateItem(Long itemCode, ItemDTO itemDTO);
 
 }

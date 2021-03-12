@@ -10,13 +10,13 @@ import com.serverbitboxer2.serverbitboxer2.dao.UserDAO;
 import com.serverbitboxer2.serverbitboxer2.dto.ItemDTO;
 import com.serverbitboxer2.serverbitboxer2.dto.PriceReductionDTO;
 import com.serverbitboxer2.serverbitboxer2.dto.SupplierDTO;
-import com.serverbitboxer2.serverbitboxer2.dto.UserDTO;
 import com.serverbitboxer2.serverbitboxer2.entities.Item;
 import com.serverbitboxer2.serverbitboxer2.entities.PriceReduction;
 import com.serverbitboxer2.serverbitboxer2.entities.Supplier;
 import com.serverbitboxer2.serverbitboxer2.entities.User;
 import com.serverbitboxer2.serverbitboxer2.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -67,9 +67,27 @@ public class ItemService implements IItemService {
     }
 
     @Override
-    public boolean updateItem(Long itemCode, ItemDTO itemDTO) {
-        if (true) {
-            return true;
+    public ResponseEntity<ItemDTO> updateItem(Long itemCode, ItemDTO itemDTO) {
+        if (itemDAO.findByItemcode(itemCode).isPresent()){
+            Item item = itemDAO.findByItemcode(itemCode).get();
+            item.setItemcode(itemDTO.getItemcode());
+            item.setDescription(itemDTO.getDescription());
+            item.setPrice(itemDTO.getPrice());
+            item.setState(itemDTO.getState());
+            item.setCreationdate(itemDTO.getCreationdate());
+            List<PriceReduction> reductions = new ArrayList<>();
+            List<Supplier> suppliers = new ArrayList<>();
+            for (SupplierDTO supplierDTO : itemDTO.getSuppliers())
+                suppliers.add(supplierAssembler.DTO2Entity(supplierDTO));
+            item.setSuppliers(suppliers);
+            for (PriceReductionDTO priceReductionrDTO : itemDTO.getReductions())
+                reductions.add(priceReductionAssembler.DTO2Entity(priceReductionrDTO));
+            item.setReductions(reductions);
+            Optional<User> user = userDAO.findByUsercode(item.getCreator().getUsercode());
+            user.ifPresent(value -> value.addItem(item));
+            itemDAO.save(item);
+            return ResponseEntity.ok().body(itemAssembler.entity2DTO(item));
+
         } else throw new ResourceNotFoundException("The item with the code: " + itemCode + "could not be updated");
     }
 

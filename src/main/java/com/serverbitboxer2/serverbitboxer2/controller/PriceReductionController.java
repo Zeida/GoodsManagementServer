@@ -18,7 +18,7 @@ public class PriceReductionController {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/pricereduction/{pricereductioncode}")
-    public PriceReductionDTO findPriceReductionByCode(@PathVariable(name = "pricereductioncode") Long priceReductionCode) {
+    public PriceReductionDTO findByPricereductioncode(@PathVariable(name = "pricereductioncode") Long priceReductionCode) {
         PriceReductionDTO priceReductionDTO = priceReductionService.findByPricereductioncode(priceReductionCode);
         if (priceReductionDTO == null) {
             throw new RuntimeException("The Price Reduction with code: " + priceReductionCode + " does not exist");

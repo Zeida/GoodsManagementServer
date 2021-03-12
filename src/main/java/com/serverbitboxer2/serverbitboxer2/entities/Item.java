@@ -1,7 +1,6 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
 
 import com.serverbitboxer2.serverbitboxer2.globaldata.ItemStateEnum;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,6 +14,11 @@ public class Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer itemid;
+
+    public Integer getItemid() {
+        return itemid;
+    }
+
     @Column(unique = true)
     private Long itemcode;
     private String description;
