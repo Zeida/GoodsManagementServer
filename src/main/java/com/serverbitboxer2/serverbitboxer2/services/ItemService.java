@@ -29,7 +29,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class ItemService implements IItemService{
+public class ItemService implements IItemService {
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -46,12 +46,14 @@ public class ItemService implements IItemService{
     private SupplierAssembler supplierAssembler = new SupplierAssembler();
     private PriceReductionAssembler priceReductionAssembler = new PriceReductionAssembler();
     private UserAssembler userAssembler = new UserAssembler();
+
     @Override
     public List<ItemDTO> findAll() {
-        List<ItemDTO> itemsDTO= new ArrayList<>();
-        for (Item item: itemDAO.findAll()) itemsDTO.add(itemAssembler.entity2DTO(item));
+        List<ItemDTO> itemsDTO = new ArrayList<>();
+        for (Item item : itemDAO.findAll()) itemsDTO.add(itemAssembler.entity2DTO(item));
         return itemsDTO;
     }
+
     @Async
     @Override
     public void createItem(ItemDTO item) {
@@ -66,18 +68,18 @@ public class ItemService implements IItemService{
 
     @Override
     public boolean updateItem(Long itemCode, ItemDTO itemDTO) {
-        if(true){
+        if (true) {
             return true;
-        }else throw new ResourceNotFoundException("The item with the code: " + itemCode +"could not be updated" );
+        } else throw new ResourceNotFoundException("The item with the code: " + itemCode + "could not be updated");
     }
 
     @Override
     public ItemDTO findByItemcode(Long itemCode) {
         Optional<Item> item = itemDAO.findByItemcode(itemCode);
-        if(item.isPresent()){
+        if (item.isPresent()) {
             return (itemAssembler.entity2DTO(item.get()));
 
-        }else throw new ResourceNotFoundException("The item with the code: " + itemCode + "does not exist");
+        } else throw new ResourceNotFoundException("The item with the code: " + itemCode + "does not exist");
     }
 
 

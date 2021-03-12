@@ -46,7 +46,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public List<UserDTO> findUsersByName(String name) {
+    public List<UserDTO> findByName(String name) {
         List<User> users = userDAO.findAllByName(name);
         List<UserDTO> usersDTO = new ArrayList<>();
         for(User user: users){
@@ -56,7 +56,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public UserDTO findUserByCode(Long usercode ) {
+    public UserDTO findByUsercode(Long usercode ) {
         Optional<User> user = userDAO.findByUsercode(usercode);
         if(user.isPresent()){
             return (userAssembler.entity2DTO(user.get()));

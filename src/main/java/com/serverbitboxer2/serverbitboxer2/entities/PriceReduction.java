@@ -6,28 +6,22 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="pricereduction")
+@Table(name = "pricereduction")
 public class PriceReduction implements Serializable {
-    @Override
-    public String toString() {
-        return "PriceReduction{" +
-                "pricereductioncode=" + pricereductioncode +
-                ", reducedprice=" + reducedprice +
-                ", startdate=" + startdate +
-                ", enddate=" + enddate +
-                '}';
-    }
+
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer pricereductionid;
-
+    @Column(unique = true)
     private Long pricereductioncode;
     private double reducedprice;
     private Date startdate;
     private Date enddate;
+    @ManyToMany(mappedBy = "reductions")
+    private List<Item> reducedpriceitems;
 
     public Long getPricereductioncode() {
         return pricereductioncode;
@@ -37,12 +31,9 @@ public class PriceReduction implements Serializable {
         this.pricereductioncode = pricereductioncode;
     }
 
+    public PriceReduction() {
+    }
 
-
-    @ManyToMany(mappedBy = "reductions")
-    private List<Item> reducedpriceitems;
-
-    public PriceReduction(){}
     public PriceReduction(Integer pricereductionid, Long pricereductioncode, double reducedprice, Date startdate, Date enddate, List<Item> reducedpriceitems) {
         this.pricereductionid = pricereductionid;
         this.pricereductioncode = pricereductioncode;
@@ -84,4 +75,15 @@ public class PriceReduction implements Serializable {
         this.enddate = enddate;
     }
 
+    @Override
+    public String toString() {
+        return "PriceReduction{" +
+                "pricereductionid=" + pricereductionid +
+                ", pricereductioncode=" + pricereductioncode +
+                ", reducedprice=" + reducedprice +
+                ", startdate=" + startdate +
+                ", enddate=" + enddate +
+                ", reducedpriceitems=" + reducedpriceitems +
+                '}';
+    }
 }

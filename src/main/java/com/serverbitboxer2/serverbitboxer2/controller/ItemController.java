@@ -21,6 +21,7 @@ public class ItemController {
     public List<ItemDTO> findAll(){
         return itemService.findAll();
     }
+
     @GetMapping("/item/{itemcode}")
     public ItemDTO getItemByCode(@PathVariable(name = "itemcode") Long itemcode){
         ItemDTO itemDTO=itemService.findByItemcode(itemcode);

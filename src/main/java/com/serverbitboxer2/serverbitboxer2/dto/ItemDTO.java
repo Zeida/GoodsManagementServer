@@ -1,92 +1,39 @@
 package com.serverbitboxer2.serverbitboxer2.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.serverbitboxer2.serverbitboxer2.globaldata.ItemStateEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ItemDTO implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    @JsonProperty("itemid")
     private Integer itemid;
+    @JsonProperty("itemcode")
     private Long itemcode;
+    @JsonProperty("description")
     private String description;
+    @JsonProperty("price")
     private double price;
+    @JsonProperty("state")
     private ItemStateEnum state;
+    @JsonProperty("suppliers")
     private List<SupplierDTO> suppliers;
+    @JsonProperty("creationdate")
     private Date creationdate;
+    @JsonProperty("creator")
     private UserDTO creator;
+    @JsonProperty("reductions")
     private List<PriceReductionDTO> reductions;
 
-    public Integer getItemid() {
-        return itemid;
-    }
-
-    public void setItemid(Integer itemid) {
-        this.itemid = itemid;
-    }
-
-    public Long getItemcode() {
-        return itemcode;
-    }
-
-    public void setItemcode(Long itemcode) {
-        this.itemcode = itemcode;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public ItemStateEnum getState() {
-        return state;
-    }
-
-    public void setState(ItemStateEnum state) {
-        this.state = state;
-    }
-
-    public List<SupplierDTO> getSuppliers() {
-        return suppliers;
-    }
-
-    public void setSuppliers(List<SupplierDTO> suppliers) {
-        this.suppliers = suppliers;
-    }
-
-    public Date getCreationdate() {
-        return creationdate;
-    }
-
-    public void setCreationdate(Date creationdate) {
-        this.creationdate = creationdate;
-    }
-
-    public UserDTO getCreator() {
-        return creator;
-    }
-
-    public void setCreator(UserDTO creator) {
-        this.creator = creator;
-    }
-
-    public List<PriceReductionDTO> getReductions() {
-        return reductions;
-    }
-
-    public void setReductions(List<PriceReductionDTO> reductions) {
-        this.reductions = reductions;
-    }
 }

@@ -1,64 +1,30 @@
 package com.serverbitboxer2.serverbitboxer2.dto;
 
-import com.serverbitboxer2.serverbitboxer2.entities.Item;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PriceReductionDTO implements Serializable {
+    @JsonProperty("pricereductionid")
     private Integer pricereductionid;
+    @JsonProperty("pricereductioncode")
     private Long pricereductioncode;
+    @JsonProperty("reducedprice")
     private double reducedprice;
+    @JsonProperty("startdate")
     private Date startdate;
+    @JsonProperty("enddate")
     private Date enddate;
+    @JsonProperty("reducedpriceitems")
     private List<ItemDTO> reducedpriceitems;
-
-    public Integer getPricereductionid() {
-        return pricereductionid;
-    }
-
-    public void setPricereductionid(Integer pricereductionid) {
-        this.pricereductionid = pricereductionid;
-    }
-
-    public Long getPricereductioncode() {
-        return pricereductioncode;
-    }
-
-    public void setPricereductioncode(Long pricereductioncode) {
-        this.pricereductioncode = pricereductioncode;
-    }
-
-    public double getReducedprice() {
-        return reducedprice;
-    }
-
-    public void setReducedprice(double reducedprice) {
-        this.reducedprice = reducedprice;
-    }
-
-    public Date getStartdate() {
-        return startdate;
-    }
-
-    public void setStartdate(Date startdate) {
-        this.startdate = startdate;
-    }
-
-    public Date getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(Date enddate) {
-        this.enddate = enddate;
-    }
-
-    public List<ItemDTO> getReducedpriceitems() {
-        return reducedpriceitems;
-    }
-
-    public void setReducedpriceitems(List<ItemDTO> reducedpriceitems) {
-        this.reducedpriceitems = reducedpriceitems;
-    }
 }

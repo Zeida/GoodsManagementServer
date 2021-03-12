@@ -32,9 +32,10 @@ public class PriceReductionService implements IPriceReductionService {
     @Override
     public PriceReductionDTO findByPricereductioncode(Long priceReductionCode) {
         Optional<PriceReduction> priceReduction = priceReductionDAO.findByPricereductioncode(priceReductionCode);
-        if(priceReduction.isPresent()){
+        if (priceReduction.isPresent()) {
             return (priceReductionAssembler.entity2DTO(priceReduction.get()));
-        }else throw new ResourceNotFoundException("The Price Reduction with the code: " + priceReductionCode + "does not exist");
+        } else
+            throw new ResourceNotFoundException("The Price Reduction with the code: " + priceReductionCode + "does not exist");
 
     }
 
@@ -43,7 +44,7 @@ public class PriceReductionService implements IPriceReductionService {
         //Gestionar lista vacia
         List<PriceReduction> pricereductions = priceReductionDAO.findAll();
         List<PriceReductionDTO> priceReductionsDTO = new ArrayList<>();
-        for(PriceReduction priceReducion: pricereductions){
+        for (PriceReduction priceReducion : pricereductions) {
             priceReductionsDTO.add(priceReductionAssembler.entity2DTO(priceReducion));
         }
         return priceReductionsDTO;

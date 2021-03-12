@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface PriceReductionDAO extends JpaRepository<PriceReduction, Long> {
     Optional<PriceReduction> findByPricereductioncode(Long priceReductionCode);
+
     void deleteByPricereductioncode(Long priceReductionCode);
 }

@@ -15,7 +15,7 @@ INSERT INTO pricereduction(pricereductioncode, reducedprice, startdate, enddate)
     (2, '0.3', '2008-11-09', '2008-12-29'),
     (3, '0.7', '2008-11-11', '2008-12-29');
 
-INSERT INTO item(itemcode, description, price, state, creationdate) VALUES
-    (1, 'Hamaca verde de jardin', '58.90', 'ACTIVE', '2008-12-29'),
-    (2, 'Mesa de plástico jardin', '45.90', 'ACTIVE', '2008-12-29'),
-    (3, 'Barbacoa de mamposteria', '125.2', 'ACTIVE', '2008-12-29');
+INSERT INTO item(itemcode, description, price, state, creationdate, creator) VALUES
+    (1, 'Hamaca verde de jardin', '58.90', 'ACTIVE', '2008-12-29','1'),
+    (2, 'Mesa de plástico jardin', '45.90', 'ACTIVE', '2008-12-29','1'),
+    (3, 'Barbacoa de mamposteria', '125.2', 'ACTIVE', '2008-12-29','1');

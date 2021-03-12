@@ -2,13 +2,10 @@ package com.serverbitboxer2.serverbitboxer2.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.serverbitboxer2.serverbitboxer2.dto.ItemDTO;
 import com.serverbitboxer2.serverbitboxer2.dto.UserDTO;
-import com.serverbitboxer2.serverbitboxer2.entities.User;
 import com.serverbitboxer2.serverbitboxer2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,13 +21,13 @@ public class UserController {
     public List<UserDTO> findAll() {
         return userService.findAll();
     }
-    @GetMapping("/user/{name}")
+    @GetMapping("/user/name/{name}")
     public List<UserDTO> findUsersByName(@PathVariable(name = "name") String name) {
-        return userService.findUsersByName(name);
+        return userService.findByName(name);
     }
     @GetMapping("/user/{usercode}")
     public UserDTO findUserByCode(@PathVariable(name = "usercode") Long usercode) {
-        UserDTO userDTO = userService.findUserByCode(usercode);
+        UserDTO userDTO = userService.findByUsercode(usercode);
         if(userDTO==null){
             throw new RuntimeException("The User with code: "+ usercode +" does not exist");
         }
@@ -44,7 +41,7 @@ public class UserController {
 
     @DeleteMapping("/user/{usercode}/delete")
     public void deleteUser(@PathVariable(name = "usercode") Long usercode) {
-        UserDTO userDTO = userService.findUserByCode(usercode);
+        UserDTO userDTO = userService.findByUsercode(usercode);
         if(userDTO==null){
             throw new RuntimeException("The User with code: "+ usercode +" does not exist");
         }

@@ -1,4 +1,5 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
+
 import com.serverbitboxer2.serverbitboxer2.globaldata.ItemStateEnum;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -8,12 +9,13 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="item")
+@Table(name = "item")
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer itemid;
+    @Column(unique = true)
     private Long itemcode;
     private String description;
     private double price;
@@ -23,16 +25,20 @@ public class Item implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "itemssupplied")
     private List<Supplier> suppliers;
+
     private Date creationdate;
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "usercode")
+    @JoinColumn(name = "creator")
     private User creator;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "reducedpriceitems")
     private List<PriceReduction> reductions;
-    public Item(){}
+
+    public Item() {
+    }
+
     public Item(Integer itemid, Long itemcode, String description, double price, ItemStateEnum state, List<Supplier> suppliers, Date creationdate, User creator, List<PriceReduction> reductions) {
         this.itemid = itemid;
         this.itemcode = itemcode;

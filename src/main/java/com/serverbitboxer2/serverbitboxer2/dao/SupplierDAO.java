@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface SupplierDAO extends JpaRepository<Supplier, Long> {
 
     Optional<Supplier> findBySuppliercode(Long suppliercode);
+
     void deleteBySuppliercode(Long suppliercode);
 }

@@ -6,8 +6,11 @@ import java.util.List;
 
 public interface IPriceReductionService {
     PriceReductionDTO findByPricereductioncode(Long priceReductionCode);
+
     List<PriceReductionDTO> findAll();
+
     void createPriceReduction(PriceReductionDTO priceReductionDTO);
+
     void deletePriceReduction(Long priceReductionCode);
 
 

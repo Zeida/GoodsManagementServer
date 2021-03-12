@@ -5,35 +5,24 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="supplier")
+@Table(name = "supplier")
 public class Supplier implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Override
-    public String toString() {
-        return "Supplier{" +
-                "suppliercode=" + suppliercode +
-                ", name='" + name + '\'' +
-                ", country='" + country + '\'' +
-                '}';
-    }
-
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer supplierid;
+    @Column(unique = true)
     private Long suppliercode;
     private String name;
     private String country;
-
     @ManyToMany(mappedBy = "suppliers")
     private List<Item> itemssupplied;
 
-    public Long getSuppliercode() {
-        return suppliercode;
+    public Supplier() {
     }
 
-    public Supplier(){}
     public Supplier(Integer supplierid, Long suppliercode, String name, String country, List<Item> itemssupplied) {
         this.supplierid = supplierid;
         this.suppliercode = suppliercode;
@@ -44,6 +33,10 @@ public class Supplier implements Serializable {
 
     public void setSuppliercode(Long suppliercode) {
         this.suppliercode = suppliercode;
+    }
+
+    public Long getSuppliercode() {
+        return suppliercode;
     }
 
     public String getName() {
@@ -70,5 +63,14 @@ public class Supplier implements Serializable {
         this.itemssupplied = itemssupplied;
     }
 
-
+    @Override
+    public String toString() {
+        return "Supplier{" +
+                "supplierid=" + supplierid +
+                ", suppliercode=" + suppliercode +
+                ", name='" + name + '\'' +
+                ", country='" + country + '\'' +
+                ", itemssupplied=" + itemssupplied +
+                '}';
+    }
 }

@@ -1,7 +1,9 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.IndexColumn;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,16 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userid;
+    @Column(unique = true)
     private Long usercode;
     private String username;
-    @JsonIgnore
     private String password;
     private String name;
     private String surname;
@@ -30,27 +36,13 @@ public class User implements Serializable {
     private List<Item> createditems;
 
     public void addItem(Item item) {
-        if(createditems == null) {
+        if (createditems == null) {
             createditems = new ArrayList<>();
         }
         createditems.add(item);
         item.setCreator(this);
     }
 
-
-    public User(){}
-    public User(Integer userid, Long usercode, String username, String password, String name, String surname, String email, String address, String phone, List<Item> createditems) {
-        this.userid = userid;
-        this.usercode = usercode;
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.address = address;
-        this.phone = phone;
-        this.createditems = createditems;
-    }
 
     public String getName() {
         return name;

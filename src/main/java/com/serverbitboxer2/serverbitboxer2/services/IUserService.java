@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface IUserService {
     List<UserDTO> findAll();
-    List<UserDTO> findUsersByName(String name);
-    UserDTO findUserByCode(Long userCode);
+    List<UserDTO> findByName(String name);
+    UserDTO findByUsercode(Long userCode);
     void createUser(UserDTO userDTO);
     void deleteUser(Long userCode);
 }
