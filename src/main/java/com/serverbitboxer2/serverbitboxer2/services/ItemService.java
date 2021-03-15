@@ -57,6 +57,7 @@ public class ItemService implements IItemService {
     @Async
     @Override
     public void createItem(ItemDTO item) {
+
         itemDAO.save(itemAssembler.DTO2Entity(item));
     }
 
@@ -84,7 +85,7 @@ public class ItemService implements IItemService {
                 reductions.add(priceReductionAssembler.DTO2Entity(priceReductionrDTO));
             item.setReductions(reductions);
             Optional<User> user = userDAO.findByUsercode(item.getCreator().getUsercode());
-            user.ifPresent(value -> value.addItem(item));
+            if (!itemDTO.getCreator().equals(user.get())) user.get().addItem(item);
             itemDAO.save(item);
             return ResponseEntity.ok().body(itemAssembler.entity2DTO(item));
 

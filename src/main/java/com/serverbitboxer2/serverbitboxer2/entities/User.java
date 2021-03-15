@@ -31,8 +31,8 @@ public class User implements Serializable {
     private String email;
     private String address;
     private String phone;
-
-    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="creator", cascade = CascadeType.ALL)
+    //@OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Item> createditems;
 
     public void addItem(Item item) {

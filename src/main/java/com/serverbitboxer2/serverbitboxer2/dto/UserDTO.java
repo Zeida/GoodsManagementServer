@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Setter
@@ -34,6 +35,4 @@ public class UserDTO implements Serializable {
     @JsonProperty("createditems")
     @JsonBackReference
     private List<ItemDTO> createditems;
-
-
 }

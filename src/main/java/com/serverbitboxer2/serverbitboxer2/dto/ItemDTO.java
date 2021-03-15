@@ -2,6 +2,7 @@ package com.serverbitboxer2.serverbitboxer2.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.serverbitboxer2.serverbitboxer2.entities.User;
 import com.serverbitboxer2.serverbitboxer2.globaldata.ItemStateEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,5 +36,12 @@ public class ItemDTO implements Serializable {
     private UserDTO creator;
     @JsonProperty("reductions")
     private List<PriceReductionDTO> reductions;
+    public UserDTO getCreator() {
+        return creator;
+    }
+    public void setCreator(UserDTO creator) {
+        this.creator = creator;
+    }
+
 
 }

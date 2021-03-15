@@ -4,44 +4,42 @@ import com.serverbitboxer2.serverbitboxer2.globaldata.ItemStateEnum;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 @Entity
 @Table(name = "item")
 public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer itemid;
-
-    public Integer getItemid() {
-        return itemid;
-    }
-
     @Column(unique = true)
     private Long itemcode;
     private String description;
     private double price;
     @Enumerated(EnumType.STRING)
     private ItemStateEnum state;
-
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "itemssupplied")
     private List<Supplier> suppliers;
-
     private Date creationdate;
 
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "creator")
+    //@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    //@JoinColumn(name = "usercode")
+
+    @ManyToOne
+    @JoinColumn(name="usercode")
     private User creator;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "reducedpriceitems")
     private List<PriceReduction> reductions;
 
-    public Item() {
-    }
+    public Item() { }
 
     public Item(Integer itemid, Long itemcode, String description, double price, ItemStateEnum state, List<Supplier> suppliers, Date creationdate, User creator, List<PriceReduction> reductions) {
         this.itemid = itemid;
@@ -53,6 +51,10 @@ public class Item implements Serializable {
         this.creationdate = creationdate;
         this.creator = creator;
         this.reductions = reductions;
+    }
+
+    public Integer getItemid() {
+        return itemid;
     }
 
     @Override
@@ -77,12 +79,12 @@ public class Item implements Serializable {
         this.itemcode = itemcode;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public List<Supplier> getSuppliers() {
         return suppliers;
+    }
+
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
     }
 
     public List<PriceReduction> getReductions() {
@@ -105,6 +107,10 @@ public class Item implements Serializable {
         return price;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public void setPrice(Double price) {
         this.price = price;
     }
@@ -116,7 +122,6 @@ public class Item implements Serializable {
     public void setState(ItemStateEnum state) {
         this.state = state;
     }
-
 
     public User getCreator() {
         return creator;
@@ -132,9 +137,5 @@ public class Item implements Serializable {
 
     public void setCreationdate(Date creationdate) {
         this.creationdate = creationdate;
-    }
-
-    public void setSuppliers(List<Supplier> suppliers) {
-        this.suppliers = suppliers;
     }
 }
