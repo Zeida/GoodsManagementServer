@@ -38,7 +38,7 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public SupplierDTO findBySuppliercode(Long suppliercode) {
+    public SupplierDTO findBySuppliercode(String suppliercode) {
         Optional<Supplier> supplier = supplierDAO.findBySuppliercode(suppliercode);
         if (supplier.isPresent()) {
             return (supplierAssembler.entity2DTO(supplier.get()));
@@ -52,7 +52,7 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public void deleteSupplier(Long suppliercode) {
+    public void deleteSupplier(String suppliercode) {
         supplierDAO.deleteBySuppliercode(suppliercode);
     }
 }

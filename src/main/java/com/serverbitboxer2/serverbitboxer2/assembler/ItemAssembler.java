@@ -10,13 +10,11 @@ public class ItemAssembler {
     private ModelMapper modelMapper = new ModelMapper();
 
     public ItemDTO entity2DTO(Item item) {
-        ItemDTO itemDTO= modelMapper.map(item, ItemDTO.class);
-        return itemDTO;
+        return modelMapper.map(item, ItemDTO.class);
     }
 
     public Item DTO2Entity(ItemDTO itemDTO) {
         return modelMapper.map(itemDTO, Item.class);
-
     }
 
 }

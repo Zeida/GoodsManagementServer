@@ -9,9 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface UserDAO extends JpaRepository<User, Long> {
-    Optional<User> findByUsercode(Long usercode);
+    Optional<User> findByUsercode(String usercode);
 
-    void deleteByUsercode(Long userCode);
+    void deleteByUsercode(String usercode);
 
     List<User> findAllByName(String name);
 }

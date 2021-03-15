@@ -5,13 +5,13 @@ import com.serverbitboxer2.serverbitboxer2.dto.PriceReductionDTO;
 import java.util.List;
 
 public interface IPriceReductionService {
-    PriceReductionDTO findByPricereductioncode(Long priceReductionCode);
+    PriceReductionDTO findByPricereductioncode(String priceReductionCode);
 
     List<PriceReductionDTO> findAll();
 
     void createPriceReduction(PriceReductionDTO priceReductionDTO);
 
-    void deletePriceReduction(Long priceReductionCode);
+    void deletePriceReduction(String priceReductionCode);
 
 
 }

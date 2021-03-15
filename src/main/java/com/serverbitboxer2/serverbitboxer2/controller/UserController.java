@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{usercode}")
-    public UserDTO findUserByCode(@PathVariable(name = "usercode") Long usercode) {
+    public UserDTO findUserByCode(@PathVariable(name = "usercode") String usercode) {
         UserDTO userDTO = userService.findByUsercode(usercode);
         if (userDTO == null) {
             throw new RuntimeException("The User with code: " + usercode + " does not exist");
@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{usercode}/delete")
-    public ResponseEntity<Void> deleteUser(@PathVariable(name = "usercode") Long usercode) {
+    public ResponseEntity<Void> deleteUser(@PathVariable(name = "usercode") String usercode) {
         UserDTO userDTO = userService.findByUsercode(usercode);
         if (userDTO == null) {
             throw new RuntimeException("The User with code: " + usercode + " does not exist");

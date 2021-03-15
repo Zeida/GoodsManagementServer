@@ -4,10 +4,8 @@ import com.serverbitboxer2.serverbitboxer2.globaldata.ItemStateEnum;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 @Entity
 @Table(name = "item")
@@ -16,9 +14,9 @@ public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer itemid;
+    private Long itemid;
     @Column(unique = true)
-    private Long itemcode;
+    private String itemcode;
     private String description;
     private double price;
     @Enumerated(EnumType.STRING)
@@ -28,11 +26,11 @@ public class Item implements Serializable {
     private List<Supplier> suppliers;
     private Date creationdate;
 
-    //@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-    //@JoinColumn(name = "usercode")
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "userid")
 
-    @ManyToOne
-    @JoinColumn(name="usercode")
+    //@ManyToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name="userid" )
     private User creator;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -41,7 +39,7 @@ public class Item implements Serializable {
 
     public Item() { }
 
-    public Item(Integer itemid, Long itemcode, String description, double price, ItemStateEnum state, List<Supplier> suppliers, Date creationdate, User creator, List<PriceReduction> reductions) {
+    public Item(Long itemid, String itemcode, String description, double price, ItemStateEnum state, List<Supplier> suppliers, Date creationdate, User creator, List<PriceReduction> reductions) {
         this.itemid = itemid;
         this.itemcode = itemcode;
         this.description = description;
@@ -53,7 +51,7 @@ public class Item implements Serializable {
         this.reductions = reductions;
     }
 
-    public Integer getItemid() {
+    public Long getItemid() {
         return itemid;
     }
 
@@ -71,11 +69,11 @@ public class Item implements Serializable {
                 '}';
     }
 
-    public Long getItemcode() {
+    public String getItemcode() {
         return itemcode;
     }
 
-    public void setItemcode(Long itemcode) {
+    public void setItemcode(String itemcode) {
         this.itemcode = itemcode;
     }
 

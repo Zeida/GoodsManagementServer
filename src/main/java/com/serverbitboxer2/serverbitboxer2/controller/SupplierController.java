@@ -24,7 +24,7 @@ public class SupplierController {
     }
 
     @GetMapping("/supplier/{suppliercode}")
-    public SupplierDTO findBySuppliercode(@PathVariable(name = "suppliercode") Long suppliercode) {
+    public SupplierDTO findBySuppliercode(@PathVariable(name = "suppliercode") String suppliercode) {
         SupplierDTO supplierDTO = supplierService.findBySuppliercode(suppliercode);
         if (supplierDTO == null) {
             throw new RuntimeException("The Supplier with code: " + suppliercode + " does not exist");
@@ -40,7 +40,7 @@ public class SupplierController {
     }
 
     @DeleteMapping("/supplier/{suppliercode}/delete")
-    public ResponseEntity<Void> deleteSupplier(@PathVariable(name = "suppliercode") Long suppliercode) {
+    public ResponseEntity<Void> deleteSupplier(@PathVariable(name = "suppliercode") String suppliercode) {
         SupplierDTO supplierDTO = supplierService.findBySuppliercode(suppliercode);
         if (supplierDTO == null) {
             throw new RuntimeException("The Supplier with code: " + suppliercode + " does not exist");

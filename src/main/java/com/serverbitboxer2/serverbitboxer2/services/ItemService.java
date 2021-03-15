@@ -62,13 +62,13 @@ public class ItemService implements IItemService {
     }
 
     @Override
-    public void deleteItem(Long itemcode) {
+    public void deleteItem(String itemcode) {
         //Optional<Item> item = itemDAO.findByItemcode(itemcode);
         itemDAO.deleteByItemcode(itemcode);
     }
 
     @Override
-    public ResponseEntity<ItemDTO> updateItem(Long itemCode, ItemDTO itemDTO) {
+    public ResponseEntity<ItemDTO> updateItem(String itemCode, ItemDTO itemDTO) {
         if (itemDAO.findByItemcode(itemCode).isPresent()){
             Item item = itemDAO.findByItemcode(itemCode).get();
             item.setItemcode(itemDTO.getItemcode());
@@ -93,7 +93,7 @@ public class ItemService implements IItemService {
     }
 
     @Override
-    public ItemDTO findByItemcode(Long itemCode) {
+    public ItemDTO findByItemcode(String itemCode) {
         Optional<Item> item = itemDAO.findByItemcode(itemCode);
         if (item.isPresent()) {
             return (itemAssembler.entity2DTO(item.get()));

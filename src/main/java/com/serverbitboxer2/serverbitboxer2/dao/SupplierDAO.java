@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface SupplierDAO extends JpaRepository<Supplier, Long> {
 
-    Optional<Supplier> findBySuppliercode(Long suppliercode);
+    Optional<Supplier> findBySuppliercode(String suppliercode);
 
-    void deleteBySuppliercode(Long suppliercode);
+    void deleteBySuppliercode(String suppliercode);
 }

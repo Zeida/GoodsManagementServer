@@ -56,7 +56,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public UserDTO findByUsercode(Long usercode ) {
+    public UserDTO findByUsercode(String usercode ) {
         Optional<User> user = userDAO.findByUsercode(usercode);
         if(user.isPresent()){
             return (userAssembler.entity2DTO(user.get()));
@@ -70,7 +70,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public void deleteUser(Long userCode) {
+    public void deleteUser(String userCode) {
         userDAO.deleteByUsercode(userCode);
     }
 

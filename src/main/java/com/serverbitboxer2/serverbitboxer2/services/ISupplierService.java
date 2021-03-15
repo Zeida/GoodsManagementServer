@@ -7,9 +7,9 @@ import java.util.List;
 public interface ISupplierService {
     List<SupplierDTO> findAll();
 
-    SupplierDTO findBySuppliercode(Long suppliercode);
+    SupplierDTO findBySuppliercode(String suppliercode);
 
     void createSupplier(SupplierDTO supplierDTO);
 
-    void deleteSupplier(Long suppliercode);
+    void deleteSupplier(String suppliercode);
 }

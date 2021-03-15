@@ -24,7 +24,7 @@ public class ItemController {
     }
 
     @GetMapping("/item/{itemcode}")
-    public ItemDTO getItemByCode(@PathVariable(name = "itemcode") Long itemcode) {
+    public ItemDTO getItemByCode(@PathVariable(name = "itemcode") String itemcode) {
         ItemDTO itemDTO = itemService.findByItemcode(itemcode);
         if (itemDTO == null) {
             throw new RuntimeException("The Item with code: " + itemcode + " does not exist");
@@ -40,13 +40,13 @@ public class ItemController {
 
     @PutMapping("/item/{itemcode}/update")
 
-    public ResponseEntity<ItemDTO> updateItem(@PathVariable(name = "itemcode") Long itemcode, @RequestBody String item) throws JsonProcessingException {
+    public ResponseEntity<ItemDTO> updateItem(@PathVariable(name = "itemcode") String itemcode, @RequestBody String item) throws JsonProcessingException {
         ItemDTO itemDTO = objectMapper.readValue(item, ItemDTO.class);
         return itemService.updateItem(itemcode, itemDTO);
     }
 
     @DeleteMapping("/item/{itemcode}/delete")
-    public void deleteItem(@PathVariable(name = "itemcode") Long itemcode) {
+    public void deleteItem(@PathVariable(name = "itemcode") String itemcode) {
         ItemDTO itemDTO = itemService.findByItemcode(itemcode);
         if (itemDTO == null) {
             throw new RuntimeException("The Item with code: " + itemcode + " does not exist");

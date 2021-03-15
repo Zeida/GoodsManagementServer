@@ -15,9 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDTO implements Serializable {
     @JsonProperty("userid")
-    private Integer userid;
+    private Long userid;
     @JsonProperty("usercode")
-    private Long usercode;
+    private String usercode;
     @JsonProperty("username")
     private String username;
     @JsonProperty("password")

@@ -16,9 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 public class PriceReductionDTO implements Serializable {
     @JsonProperty("pricereductionid")
-    private Integer pricereductionid;
+    private Long pricereductionid;
     @JsonProperty("pricereductioncode")
-    private Long pricereductioncode;
+    private String pricereductioncode;
     @JsonProperty("reducedprice")
     private double reducedprice;
     @JsonProperty("startdate")

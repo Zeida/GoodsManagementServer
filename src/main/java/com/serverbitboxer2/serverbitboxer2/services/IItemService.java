@@ -8,12 +8,12 @@ import java.util.List;
 public interface IItemService {
     List<ItemDTO> findAll();
 
-    ItemDTO findByItemcode(Long itemCode);
+    ItemDTO findByItemcode(String itemCode);
 
     void createItem(ItemDTO item);
 
-    void deleteItem(Long itemCode);
+    void deleteItem(String itemCode);
 
-    ResponseEntity<ItemDTO> updateItem(Long itemCode, ItemDTO itemDTO);
+    ResponseEntity<ItemDTO> updateItem(String itemCode, ItemDTO itemDTO);
 
 }

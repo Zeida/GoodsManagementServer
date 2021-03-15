@@ -30,7 +30,7 @@ public class PriceReductionService implements IPriceReductionService {
     PriceReductionAssembler priceReductionAssembler = new PriceReductionAssembler();
 
     @Override
-    public PriceReductionDTO findByPricereductioncode(Long priceReductionCode) {
+    public PriceReductionDTO findByPricereductioncode(String priceReductionCode) {
         Optional<PriceReduction> priceReduction = priceReductionDAO.findByPricereductioncode(priceReductionCode);
         if (priceReduction.isPresent()) {
             return (priceReductionAssembler.entity2DTO(priceReduction.get()));
@@ -56,7 +56,7 @@ public class PriceReductionService implements IPriceReductionService {
     }
 
     @Override
-    public void deletePriceReduction(Long priceReductionCode) {
+    public void deletePriceReduction(String priceReductionCode) {
         priceReductionDAO.deleteByPricereductioncode(priceReductionCode);
 
     }

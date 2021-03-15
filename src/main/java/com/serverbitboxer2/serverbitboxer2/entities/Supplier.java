@@ -12,9 +12,9 @@ public class Supplier implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer supplierid;
+    private Long supplierid;
     @Column(unique = true)
-    private Long suppliercode;
+    private String suppliercode;
     private String name;
     private String country;
     @ManyToMany(mappedBy = "suppliers")
@@ -23,7 +23,7 @@ public class Supplier implements Serializable {
     public Supplier() {
     }
 
-    public Supplier(Integer supplierid, Long suppliercode, String name, String country, List<Item> itemssupplied) {
+    public Supplier(Long supplierid, String suppliercode, String name, String country, List<Item> itemssupplied) {
         this.supplierid = supplierid;
         this.suppliercode = suppliercode;
         this.name = name;
@@ -31,11 +31,11 @@ public class Supplier implements Serializable {
         this.itemssupplied = itemssupplied;
     }
 
-    public void setSuppliercode(Long suppliercode) {
+    public void setSuppliercode(String suppliercode) {
         this.suppliercode = suppliercode;
     }
 
-    public Long getSuppliercode() {
+    public String getSuppliercode() {
         return suppliercode;
     }
 

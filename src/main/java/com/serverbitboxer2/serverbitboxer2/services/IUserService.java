@@ -7,7 +7,7 @@ import java.util.List;
 public interface IUserService {
     List<UserDTO> findAll();
     List<UserDTO> findByName(String name);
-    UserDTO findByUsercode(Long userCode);
+    UserDTO findByUsercode(String userCode);
     void createUser(UserDTO userDTO);
-    void deleteUser(Long userCode);
+    void deleteUser(String userCode);
 }

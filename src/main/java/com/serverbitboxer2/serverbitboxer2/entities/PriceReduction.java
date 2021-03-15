@@ -14,27 +14,27 @@ public class PriceReduction implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer pricereductionid;
+    private Long pricereductionid;
     @Column(unique = true)
-    private Long pricereductioncode;
+    private String pricereductioncode;
     private double reducedprice;
     private Date startdate;
     private Date enddate;
     @ManyToMany(mappedBy = "reductions")
     private List<Item> reducedpriceitems;
 
-    public Long getPricereductioncode() {
+    public String getPricereductioncode() {
         return pricereductioncode;
     }
 
-    public void setPricereductioncode(Long pricereductioncode) {
+    public void setPricereductioncode(String pricereductioncode) {
         this.pricereductioncode = pricereductioncode;
     }
 
     public PriceReduction() {
     }
 
-    public PriceReduction(Integer pricereductionid, Long pricereductioncode, double reducedprice, Date startdate, Date enddate, List<Item> reducedpriceitems) {
+    public PriceReduction(Long pricereductionid, String pricereductioncode, double reducedprice, Date startdate, Date enddate, List<Item> reducedpriceitems) {
         this.pricereductionid = pricereductionid;
         this.pricereductioncode = pricereductioncode;
         this.reducedprice = reducedprice;

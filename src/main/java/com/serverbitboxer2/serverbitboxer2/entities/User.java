@@ -17,13 +17,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements Serializable {
-
+    //long los id, generador de secuencia
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userid;
+    private Long userid;
     @Column(unique = true)
-    private Long usercode;
+    private String usercode;
     private String username;
     private String password;
     private String name;
@@ -31,8 +31,9 @@ public class User implements Serializable {
     private String email;
     private String address;
     private String phone;
-    @OneToMany(mappedBy="creator", cascade = CascadeType.ALL)
-    //@OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //@OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "creator")
     private List<Item> createditems;
 
     public void addItem(Item item) {
@@ -84,11 +85,11 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public Long getUsercode() {
+    public String getUsercode() {
         return usercode;
     }
 
-    public void setUsercode(Long usercode) {
+    public void setUsercode(String usercode) {
         this.usercode = usercode;
     }
 

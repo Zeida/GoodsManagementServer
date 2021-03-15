@@ -17,9 +17,9 @@ import java.util.List;
 public class SupplierDTO implements Serializable {
 
     @JsonProperty("supplierid")
-    private Integer supplierid;
+    private Long supplierid;
     @JsonProperty("suppliercode")
-    private Long suppliercode;
+    private String suppliercode;
     @JsonProperty("name")
     private String name;
     @JsonProperty("country")
