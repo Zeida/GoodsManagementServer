@@ -7,6 +7,7 @@ import com.serverbitboxer2.serverbitboxer2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public class UserController {
     @Autowired
     UserService userService;
     private ObjectMapper objectMapper = new ObjectMapper();
+
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
     @GetMapping("/users")
     public List<UserDTO> findAll() {
@@ -40,6 +44,7 @@ public class UserController {
     @PostMapping(value = "/user/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> createUser(@RequestBody String user) throws JsonProcessingException {
         UserDTO userDTO = objectMapper.readValue(user, UserDTO.class);
+        //userDTO.setPassword(bcryptEncoder.encode(objectMapper.readValue(user, UserDTO.class).getPassword()));
         userService.createUser(userDTO);
         return ResponseEntity.ok().body(userDTO);
     }

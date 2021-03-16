@@ -1,5 +1,5 @@
 INSERT INTO user (userid, usercode, username, password, name, surname, email, address, phone) VALUES
-    (2111321312, 'u01','zeida5','zeidapass','zeida','romen','zeidaromen@gmail.com','Moya','630222578'),
+    (2111321312, 'u01','zeida5','$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6','zeida','romen','zeidaromen@gmail.com','Moya','630222578'),
     (2111321313, 'u02','jennizqstn','jennipass','jennifer','izquier','jennizqsant@gmail.com','Las Palmas','646582578'),
     (2111321314, 'u03','jonay','jonaypass','jonay','romen','jonayromen@gmail.com','Moya','645222588'),
     (2111321315, 'u04','fayna','faynapass','fayna','romen','faynaromen@gmail.com','Arucas','645879588');

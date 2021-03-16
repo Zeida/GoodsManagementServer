@@ -1,5 +1,6 @@
 package com.serverbitboxer2.serverbitboxer2.dao;
 
+import com.serverbitboxer2.serverbitboxer2.dto.UserDTO;
 import com.serverbitboxer2.serverbitboxer2.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,4 +15,6 @@ public interface UserDAO extends JpaRepository<User, Long> {
     void deleteByUsercode(String usercode);
 
     List<User> findAllByName(String name);
+
+    User findByUsername(String username);
 }

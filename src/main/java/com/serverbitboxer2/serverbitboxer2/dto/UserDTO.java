@@ -22,6 +22,8 @@ public class UserDTO implements Serializable {
     private String username;
     @JsonProperty("password")
     private String password;
+    @JsonProperty("token")
+    private String token;
     @JsonProperty("name")
     private String name;
     @JsonProperty("surname")
@@ -35,4 +37,8 @@ public class UserDTO implements Serializable {
     @JsonProperty("createditems")
     @JsonBackReference
     private List<ItemDTO> createditems;
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

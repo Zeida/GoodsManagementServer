@@ -23,14 +23,6 @@ public class PriceReduction implements Serializable {
     @ManyToMany(mappedBy = "reductions")
     private List<Item> reducedpriceitems;
 
-    public String getPricereductioncode() {
-        return pricereductioncode;
-    }
-
-    public void setPricereductioncode(String pricereductioncode) {
-        this.pricereductioncode = pricereductioncode;
-    }
-
     public PriceReduction() {
     }
 
@@ -41,6 +33,14 @@ public class PriceReduction implements Serializable {
         this.startdate = startdate;
         this.enddate = enddate;
         this.reducedpriceitems = reducedpriceitems;
+    }
+
+    public String getPricereductioncode() {
+        return pricereductioncode;
+    }
+
+    public void setPricereductioncode(String pricereductioncode) {
+        this.pricereductioncode = pricereductioncode;
     }
 
     public List<Item> getReducedpriceitems() {

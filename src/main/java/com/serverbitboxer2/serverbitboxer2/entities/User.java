@@ -1,5 +1,6 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,8 +25,11 @@ public class User implements Serializable {
     private Long userid;
     @Column(unique = true)
     private String usercode;
+    @Column(unique = true)
     private String username;
+    @JsonIgnore
     private String password;
+    private String token;
     private String name;
     private String surname;
     private String email;
@@ -43,7 +47,6 @@ public class User implements Serializable {
         createditems.add(item);
         item.setCreator(this);
     }
-
 
     public String getName() {
         return name;
@@ -117,4 +120,11 @@ public class User implements Serializable {
         this.createditems = createditems;
     }
 
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
+    }
 }
