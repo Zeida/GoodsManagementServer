@@ -50,7 +50,7 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void saveUser(@RequestBody UserDTO user) throws Exception {
-        userService.createUser(user);
+        userDetailsService.save(user);
     }
 
     private void authenticate(String username, String password) throws Exception {
