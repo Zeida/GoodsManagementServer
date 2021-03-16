@@ -1,4 +1,5 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
+
 import java.io.Serializable;
 
 public class JwtResponse implements Serializable {

@@ -16,7 +16,7 @@ import java.util.List;
 public class ItemController {
     @Autowired
     private ItemService itemService;
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/items")
     public List<ItemDTO> findAll() {

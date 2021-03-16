@@ -14,9 +14,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class SupplierController {
+    private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     SupplierService supplierService;
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/suppliers")
     public List<SupplierDTO> findAll() {

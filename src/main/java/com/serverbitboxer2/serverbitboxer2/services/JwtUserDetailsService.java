@@ -24,7 +24,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     private PasswordEncoder bcryptEncoder;
 
     //Assemblers
-    private UserAssembler userAssembler = new UserAssembler();
+    private final UserAssembler userAssembler = new UserAssembler();
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -41,7 +41,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
         User user = userAssembler.DTO2Entity(userDTO);
         String salt = BCrypt.gensalt(12);
-        user.setPassword(BCrypt.hashpw(userDTO.getPassword(),salt));
+        user.setPassword(BCrypt.hashpw(userDTO.getPassword(), salt));
         userDAO.save(user);
     }
 

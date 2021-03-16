@@ -13,9 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class PriceReductionController {
+    private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private PriceReductionService priceReductionService;
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/pricereduction/{pricereductioncode}")
     public PriceReductionDTO findByPricereductioncode(@PathVariable(name = "pricereductioncode") String priceReductionCode) {

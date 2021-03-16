@@ -31,12 +31,12 @@ public class Supplier implements Serializable {
         this.itemssupplied = itemssupplied;
     }
 
-    public void setSuppliercode(String suppliercode) {
-        this.suppliercode = suppliercode;
-    }
-
     public String getSuppliercode() {
         return suppliercode;
+    }
+
+    public void setSuppliercode(String suppliercode) {
+        this.suppliercode = suppliercode;
     }
 
     public String getName() {

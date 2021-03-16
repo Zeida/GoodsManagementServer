@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -34,13 +35,14 @@ public class ItemDTO implements Serializable {
     private UserDTO creator;
     @JsonProperty("reductions")
     private List<PriceReductionDTO> reductions;
+
     public UserDTO getCreator() {
         return creator;
     }
+
     public void setCreator(UserDTO creator) {
         this.creator = creator;
     }
-
 
 
 }

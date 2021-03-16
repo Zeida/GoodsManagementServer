@@ -11,13 +11,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:3000/" )
+
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping("/api")
 public class UserController {
     @Autowired
     UserService userService;
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private PasswordEncoder bcryptEncoder;

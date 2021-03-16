@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SupplierAssembler {
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public SupplierDTO entity2DTO(Supplier supplier) {
         return modelMapper.map(supplier, SupplierDTO.class);

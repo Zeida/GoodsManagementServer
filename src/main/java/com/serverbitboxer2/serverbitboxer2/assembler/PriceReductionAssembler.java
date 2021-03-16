@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PriceReductionAssembler {
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public PriceReductionDTO entity2DTO(PriceReduction priceReduction) {
         return modelMapper.map(priceReduction, PriceReductionDTO.class);

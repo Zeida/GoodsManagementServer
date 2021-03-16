@@ -37,7 +37,8 @@ public class Item implements Serializable {
     @JoinTable(name = "reducedpriceitems")
     private List<PriceReduction> reductions;
 
-    public Item() { }
+    public Item() {
+    }
 
     public Item(Long itemid, String itemcode, String description, double price, ItemStateEnum state, List<Supplier> suppliers, Date creationdate, User creator, List<PriceReduction> reductions) {
         this.itemid = itemid;
