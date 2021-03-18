@@ -32,6 +32,7 @@ public class User implements Serializable {
     private String token;
     private String name;
     private String surname;
+    @Column(unique = true)
     private String email;
     private String address;
     private String phone;

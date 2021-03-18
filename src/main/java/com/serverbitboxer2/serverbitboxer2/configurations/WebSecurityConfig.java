@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 @EnableWebSecurity
@@ -30,6 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -56,8 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
                 // dont authenticate this particular request
                 //.authorizeRequests().antMatchers("/authenticate", "/register").permitAll().
-                .authorizeRequests().antMatchers(HttpMethod.POST, "/authenticate").permitAll().and()
-                .authorizeRequests().antMatchers(HttpMethod.POST, "/register").permitAll().and()
+                .authorizeRequests().antMatchers(HttpMethod.POST, "/api/authenticate").permitAll().and()
+                .authorizeRequests().antMatchers(HttpMethod.POST, "/api/register").permitAll().and()
                 .authorizeRequests().antMatchers("/h2-console/**").permitAll()
                 // all other requests need to be authenticated
                 .anyRequest().authenticated().and().
@@ -65,6 +67,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // store user's state.
                         exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        httpSecurity.headers().frameOptions().disable();
+        CorsConfiguration corsConfig = new CorsConfiguration().applyPermitDefaultValues();
+        corsConfig.addAllowedMethod("DELETE");
+        corsConfig.addAllowedMethod("POST");
+        corsConfig.addAllowedMethod("PUT");
+        corsConfig.addAllowedMethod("OPTIONS");
+        httpSecurity.cors().configurationSource(request -> corsConfig);
+
 
         // Add a filter to validate the tokens with every request
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

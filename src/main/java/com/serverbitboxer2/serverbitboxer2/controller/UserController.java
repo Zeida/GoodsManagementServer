@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -33,11 +33,20 @@ public class UserController {
         return userService.findByName(name);
     }
 
-    @GetMapping("/user/{usercode}")
+    @GetMapping("/user/usercode/{usercode}")
     public UserDTO findUserByCode(@PathVariable(name = "usercode") String usercode) {
         UserDTO userDTO = userService.findByUsercode(usercode);
         if (userDTO == null) {
             throw new RuntimeException("The User with code: " + usercode + " does not exist");
+        }
+        return userDTO;
+    }
+
+    @GetMapping("/user/username/{username}")
+    public UserDTO findByUsername(@PathVariable(name = "username") String username) {
+        UserDTO userDTO = userService.findByUsername(username);
+        if (userDTO == null) {
+            throw new RuntimeException("The User with username: " + username + " does not exist");
         }
         return userDTO;
     }

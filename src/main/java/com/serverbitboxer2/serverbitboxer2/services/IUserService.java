@@ -8,6 +8,7 @@ public interface IUserService {
     List<UserDTO> findAll();
     List<UserDTO> findByName(String name);
     UserDTO findByUsercode(String userCode);
+    UserDTO findByUsername(String username);
     void createUser(UserDTO userDTO);
     void deleteUser(String userCode);
 }

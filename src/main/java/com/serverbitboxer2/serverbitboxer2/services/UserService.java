@@ -60,7 +60,16 @@ public class UserService implements IUserService{
         Optional<User> user = userDAO.findByUsercode(usercode);
         if(user.isPresent()){
             return (userAssembler.entity2DTO(user.get()));
-        }else throw new ResourceNotFoundException("The User with the code: " + usercode + "does not exist");
+        }else throw new ResourceNotFoundException("The User with the code: " + usercode + " does not exist");
+
+    }
+
+    @Override
+    public UserDTO findByUsername(String username) {
+        User user = userDAO.findByUsername(username);
+        if(user!=null){
+            return userAssembler.entity2DTO((user));
+        }else throw new ResourceNotFoundException("The User with the username: " + username + " does not exist");
 
     }
 

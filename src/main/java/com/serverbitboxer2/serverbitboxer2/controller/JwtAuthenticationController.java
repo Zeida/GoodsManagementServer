@@ -15,8 +15,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+@RequestMapping("/api")
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8081")
 public class JwtAuthenticationController {
 
     @Autowired
@@ -45,17 +46,21 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void saveUser(@RequestBody UserDTO user) throws Exception {
-        userDetailsService.save(user);
+    public void saveUser(@RequestBody UserDTO userDTO) throws Exception {
+        try {
+            userDetailsService.save(userDTO);
+        } catch (RuntimeException e){
+        throw new Exception("This user (" + userDTO.getUsername() + ") already exist");
+        }
     }
 
     private void authenticate(String username, String password) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
+            throw new Exception("This user is disabled.", e);
         } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
+            throw new Exception("Your credentials are wrong.", e);
         }
     }
 }
