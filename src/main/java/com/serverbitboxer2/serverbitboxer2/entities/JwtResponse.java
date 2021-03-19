@@ -7,8 +7,13 @@ public class JwtResponse implements Serializable {
     private static final long serialVersionUID = -8091879091924046844L;
     private String jwttoken;
     private String type = "Bearer";
-    public JwtResponse(String jwttoken) {
+    private String username;
+    private String userpassword;
+    public JwtResponse(String jwttoken, String username, String userpassword) {
         this.jwttoken = jwttoken;
+        this.username = username;
+        this.userpassword = userpassword;
+
     }
 
     public String getToken() {
@@ -25,5 +30,21 @@ public class JwtResponse implements Serializable {
 
     public void setTokenType(String tokenType) {
         this.type = tokenType;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUserpassword() {
+        return userpassword;
+    }
+
+    public void setUserpassword(String userpassword) {
+        this.userpassword = userpassword;
     }
 }

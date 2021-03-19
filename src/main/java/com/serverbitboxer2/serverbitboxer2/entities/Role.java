@@ -1,11 +1,19 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
 
 import com.serverbitboxer2.serverbitboxer2.globaldata.UserRoleEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-
+@Entity
 @Table(name = "roles")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,25 +24,4 @@ public class Role {
     @Column(length = 60)
     private UserRoleEnum name;
 
-    public Role() {}
-
-    public Role(UserRoleEnum name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UserRoleEnum getName() {
-        return name;
-    }
-
-    public void setName(UserRoleEnum name) {
-        this.name = name;
-    }
 }

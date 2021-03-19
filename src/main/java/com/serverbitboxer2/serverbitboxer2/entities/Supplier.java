@@ -1,10 +1,19 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "supplier")
 public class Supplier implements Serializable {
 
@@ -20,48 +29,6 @@ public class Supplier implements Serializable {
     @ManyToMany(mappedBy = "suppliers")
     private List<Item> itemssupplied;
 
-    public Supplier() {
-    }
-
-    public Supplier(Long supplierid, String suppliercode, String name, String country, List<Item> itemssupplied) {
-        this.supplierid = supplierid;
-        this.suppliercode = suppliercode;
-        this.name = name;
-        this.country = country;
-        this.itemssupplied = itemssupplied;
-    }
-
-    public String getSuppliercode() {
-        return suppliercode;
-    }
-
-    public void setSuppliercode(String suppliercode) {
-        this.suppliercode = suppliercode;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public List<Item> getItemssupplied() {
-        return itemssupplied;
-    }
-
-    public void setItemssupplied(List<Item> itemssupplied) {
-        this.itemssupplied = itemssupplied;
-    }
 
     @Override
     public String toString() {

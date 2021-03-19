@@ -1,11 +1,20 @@
 package com.serverbitboxer2.serverbitboxer2.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "pricereduction")
 public class PriceReduction implements Serializable {
 
@@ -22,58 +31,6 @@ public class PriceReduction implements Serializable {
     private Date enddate;
     @ManyToMany(mappedBy = "reductions")
     private List<Item> reducedpriceitems;
-
-    public PriceReduction() {
-    }
-
-    public PriceReduction(Long pricereductionid, String pricereductioncode, double reducedprice, Date startdate, Date enddate, List<Item> reducedpriceitems) {
-        this.pricereductionid = pricereductionid;
-        this.pricereductioncode = pricereductioncode;
-        this.reducedprice = reducedprice;
-        this.startdate = startdate;
-        this.enddate = enddate;
-        this.reducedpriceitems = reducedpriceitems;
-    }
-
-    public String getPricereductioncode() {
-        return pricereductioncode;
-    }
-
-    public void setPricereductioncode(String pricereductioncode) {
-        this.pricereductioncode = pricereductioncode;
-    }
-
-    public List<Item> getReducedpriceitems() {
-        return reducedpriceitems;
-    }
-
-    public void setReducedpriceitems(List<Item> reducedpriceitems) {
-        this.reducedpriceitems = reducedpriceitems;
-    }
-
-    public double getReducedprice() {
-        return reducedprice;
-    }
-
-    public void setReducedprice(double reducedprice) {
-        this.reducedprice = reducedprice;
-    }
-
-    public Date getStartdate() {
-        return startdate;
-    }
-
-    public void setStartdate(Date startdate) {
-        this.startdate = startdate;
-    }
-
-    public Date getEnddate() {
-        return enddate;
-    }
-
-    public void setEnddate(Date enddate) {
-        this.enddate = enddate;
-    }
 
     @Override
     public String toString() {
