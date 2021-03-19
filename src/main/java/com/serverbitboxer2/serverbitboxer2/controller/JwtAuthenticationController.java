@@ -49,8 +49,8 @@ public class JwtAuthenticationController {
     public void saveUser(@RequestBody UserDTO userDTO) throws Exception {
         try {
             userDetailsService.save(userDTO);
-        } catch (RuntimeException e){
-        throw new Exception("This user (" + userDTO.getUsername() + ") already exist");
+        } catch (RuntimeException e) {
+            throw new Exception("This user (" + userDTO.getUsername() + ") already exist");
         }
     }
 

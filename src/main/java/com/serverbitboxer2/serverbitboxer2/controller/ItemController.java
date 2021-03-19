@@ -10,13 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:8081/")
 @RestController
 @RequestMapping("/api")
 public class ItemController {
+    private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     private ItemService itemService;
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/items")
     public List<ItemDTO> findAll() {

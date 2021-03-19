@@ -16,10 +16,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class UserController {
+    private final ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     UserService userService;
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
