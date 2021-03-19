@@ -1,8 +1,8 @@
-INSERT INTO user (userid, usercode, username, password, name, surname, email, address, phone, rol) VALUES
-    (2111321312, 'u01','zeida5','$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6','zeida','romen','zeidaromen@gmail.com','Moya','630222578','ROLE_ADMIN'),
-    (2111321313, 'u02','jennizqstn','$2y$12$hvxtrtv555EsrPd6rSHOl.UL6MKZCvWTSLJ6hosCoMt1OOe27jAzS ','jennifer','izquier','jennizqsant@gmail.com','Las Palmas','646582578','ROLE_USER'),
-    (2111321314, 'u03','jonay','$2y$12$ahCtAX9EXhek2pBwKjL6aupey.S57foyXgpP8FTEbWhBRLWv17WAG','jonay','romen','jonayromen@gmail.com','Moya','645222588','ROLE_USER'),
-    (2111321315, 'u04','fayna','$2y$12$8fh9M7OIPtt0VZnaGAvbd.VBkQ5xUNxr7xHVDwE0WAxskn3/aulAG ','fayna','romen','faynaromen@gmail.com','Arucas','645879588','ROLE_USER');
+INSERT INTO user (userid, usercode, username, password, name, surname, email, address, phone) VALUES
+    (2111321312, 'u01','zeida5','$2a$10$slYQmyNdGzTn7ZLBXBChFOC9f6kFjAqPhccnP6DxlWXx2lPk1C3G6','zeida','romen','zeidaromen@gmail.com','Moya','630222578'),
+    (2111321313, 'u02','jennizqstn','$2y$12$hvxtrtv555EsrPd6rSHOl.UL6MKZCvWTSLJ6hosCoMt1OOe27jAzS ','jennifer','izquier','jennizqsant@gmail.com','Las Palmas','646582578'),
+    (2111321314, 'u03','jonay','$2y$12$ahCtAX9EXhek2pBwKjL6aupey.S57foyXgpP8FTEbWhBRLWv17WAG','jonay','romen','jonayromen@gmail.com','Moya','645222588'),
+    (2111321315, 'u04','fayna','$2y$12$8fh9M7OIPtt0VZnaGAvbd.VBkQ5xUNxr7xHVDwE0WAxskn3/aulAG ','fayna','romen','faynaromen@gmail.com','Arucas','645879588');
 
 INSERT INTO supplier (suppliercode, name, country) VALUES
     ('S01', 'IKEA', 'Canary Islands'),

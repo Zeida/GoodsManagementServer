@@ -24,7 +24,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userid;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String usercode;
     @Column(unique = true, nullable = false)
     private String username;
@@ -34,19 +34,15 @@ public class User implements Serializable {
     private String token;
     private String name;
     private String surname;
-    @Column(unique = true, nullable = false)
+    //@Column(unique = true, nullable = false)
     private String email;
     private String address;
     private String phone;
-    //@OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
     @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "creator")
     private List<Item> createditems;
-
-
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     private UserRoleEnum rol;
+
+    public User(String username, String password) { }
 
     public void addItem(Item item) {
         if (createditems == null) {

@@ -24,10 +24,10 @@ public class UserDTO implements Serializable {
     @JsonProperty("username")
     private String username;
     @JsonProperty("password")
-    @JsonIgnore
+    //@JsonIgnore
     private String password;
     @JsonProperty("token")
-    @JsonIgnore
+    //@JsonIgnore
     private String token;
     @JsonProperty("name")
     private String name;
@@ -44,5 +44,7 @@ public class UserDTO implements Serializable {
     private List<ItemDTO> createditems;
     @JsonProperty("rol")
     private UserRoleEnum rol;
-
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

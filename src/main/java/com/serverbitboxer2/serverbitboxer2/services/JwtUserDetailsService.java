@@ -38,7 +38,6 @@ public class JwtUserDetailsService implements UserDetailsService {
     }
 
     public void save(UserDTO userDTO) {
-
         User user = userAssembler.DTO2Entity(userDTO);
         String salt = BCrypt.gensalt(12);
         user.setPassword(BCrypt.hashpw(userDTO.getPassword(), salt));
