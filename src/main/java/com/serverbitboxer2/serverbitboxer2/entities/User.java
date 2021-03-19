@@ -40,6 +40,12 @@ public class User implements Serializable {
     private String phone;
     @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Item> createditems;
+
+    public void setRol(UserRoleEnum rol) {
+        this.rol=rol;
+    }
+
+    @Enumerated(EnumType.STRING)
     private UserRoleEnum rol;
 
     public User(String username, String password) { }
