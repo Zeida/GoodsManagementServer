@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-
+//toda esta clase se puede simplicar en el user service
 @Service
 public class JwtUserDetailsService implements UserDetailsService {
 

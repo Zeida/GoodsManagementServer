@@ -7,6 +7,7 @@ import com.serverbitboxer2.serverbitboxer2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,11 +51,12 @@ public class UserController {
         }
         return userDTO;
     }
-
+    //se deberia usar este método para el register
     @PostMapping(value = "/user/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> createUser(@RequestBody String user) throws JsonProcessingException {
         UserDTO userDTO = objectMapper.readValue(user, UserDTO.class);
-        //userDTO.setPassword(bcryptEncoder.encode(objectMapper.readValue(user, UserDTO.class).getPassword()));
+        String salt = BCrypt.gensalt(12);
+        userDTO.setPassword(BCrypt.hashpw(userDTO.getPassword(), salt));
         userService.createUser(userDTO);
         return ResponseEntity.ok().body(userDTO);
     }

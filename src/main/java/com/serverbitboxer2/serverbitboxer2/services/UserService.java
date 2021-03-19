@@ -34,7 +34,6 @@ public class UserService implements IUserService{
     private UserAssembler userAssembler = new UserAssembler();
     private ItemAssembler itemAssembler = new ItemAssembler();
 
-
     @Override
     public List<UserDTO> findAll() {
         List<User> users = userDAO.findAll();
@@ -70,7 +69,6 @@ public class UserService implements IUserService{
         if(user!=null){
             return userAssembler.entity2DTO((user));
         }else throw new ResourceNotFoundException("The User with the username: " + username + " does not exist");
-
     }
 
     @Override
