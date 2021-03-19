@@ -8,11 +8,10 @@ public class JwtResponse implements Serializable {
     private String jwttoken;
     private String type = "Bearer";
     private String username;
-    private String userpassword;
-    public JwtResponse(String jwttoken, String username, String userpassword) {
+    public JwtResponse(String jwttoken, String username) {
         this.jwttoken = jwttoken;
         this.username = username;
-        this.userpassword = userpassword;
+
 
     }
 
@@ -40,11 +39,4 @@ public class JwtResponse implements Serializable {
         this.username = username;
     }
 
-    public String getUserpassword() {
-        return userpassword;
-    }
-
-    public void setUserpassword(String userpassword) {
-        this.userpassword = userpassword;
-    }
 }

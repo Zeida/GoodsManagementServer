@@ -42,7 +42,7 @@ public class JwtAuthenticationController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername(), userDetails.getPassword()));
+        return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername()));
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
